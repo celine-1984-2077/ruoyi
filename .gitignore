@@ -18,6 +18,7 @@ target/
 # 构建产物
 dist/
 build/
+site/
 *.jar
 !**/src/main/**/*.jar
 !**/src/test/**/*.jar

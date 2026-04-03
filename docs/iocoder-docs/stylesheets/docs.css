@@ -1,0 +1,24 @@
+.md-content {
+  max-width: 980px;
+}
+
+.md-grid {
+  max-width: 1440px;
+}
+
+.md-typeset table:not([class]) {
+  display: table;
+  width: 100%;
+  font-size: 0.82rem;
+}
+
+.md-typeset img {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  background: #fff;
+  padding: 4px;
+}
+
+.md-sidebar__scrollwrap {
+  scrollbar-width: thin;
+}

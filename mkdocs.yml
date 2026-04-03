@@ -1,0 +1,353 @@
+site_name: RuoYi Docs Mirror
+site_description: Mirror of doc.iocoder.cn for local search and GitHub Pages hosting
+site_url: https://tony1120.github.io/ruoyi/
+repo_url: https://github.com/Tony1120/ruoyi
+repo_name: Tony1120/ruoyi
+docs_dir: docs/iocoder-docs
+site_dir: site
+use_directory_urls: true
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.instant
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+  palette:
+    - scheme: default
+      primary: blue grey
+      accent: indigo
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+extra:
+  social: []
+
+extra_css:
+  - stylesheets/docs.css
+
+nav:
+  - "首页": index.md
+  - "完整索引": all-pages.md
+  - "全部文档":
+    - "Admin Uniapp":
+      - "Components": pages/admin-uniapp/components/index.md
+      - "Debugger": pages/admin-uniapp/debugger/index.md
+      - "Deploy": pages/admin-uniapp/deploy/index.md
+      - "Dev Spec": pages/admin-uniapp/dev-spec/index.md
+      - "Dict": pages/admin-uniapp/dict/index.md
+      - "Format": pages/admin-uniapp/format/index.md
+      - "Icon Theme": pages/admin-uniapp/icon-theme/index.md
+      - "Route": pages/admin-uniapp/route/index.md
+      - "Util": pages/admin-uniapp/util/index.md
+    - "AI 手册":
+      - "Azure Openai": pages/ai/azure-openai/index.md
+      - "Baichuan": pages/ai/baichuan/index.md
+      - "Build": pages/ai/build/index.md
+      - "Chat": pages/ai/chat/index.md
+      - "Claude": pages/ai/claude/index.md
+      - "Coze": pages/ai/coze/index.md
+      - "Deep Seek": pages/ai/deep-seek/index.md
+      - "Dify": pages/ai/dify/index.md
+      - "Doubao": pages/ai/doubao/index.md
+      - "Fastgpt": pages/ai/fastgpt/index.md
+      - "Gemini": pages/ai/gemini/index.md
+      - "Glm": pages/ai/glm/index.md
+      - "Hunyuan": pages/ai/hunyuan/index.md
+      - "Image": pages/ai/image/index.md
+      - "Knowledge": pages/ai/knowledge/index.md
+      - "Llama": pages/ai/llama/index.md
+      - "Mcp Client": pages/ai/mcp-client/index.md
+      - "Mcp Server": pages/ai/mcp-server/index.md
+      - "Midjourney": pages/ai/midjourney/index.md
+      - "Mindmap": pages/ai/mindmap/index.md
+      - "Minimax": pages/ai/minimax/index.md
+      - "Moonshot": pages/ai/moonshot/index.md
+      - "Music": pages/ai/music/index.md
+      - "Openai": pages/ai/openai/index.md
+      - "Siliconflow": pages/ai/siliconflow/index.md
+      - "Stable Diffusion": pages/ai/stable-diffusion/index.md
+      - "Suno": pages/ai/suno/index.md
+      - "Thinking": pages/ai/thinking/index.md
+      - "Tongyi": pages/ai/tongyi/index.md
+      - "Tool": pages/ai/tool/index.md
+      - "Web Search": pages/ai/web-search/index.md
+      - "Workflow": pages/ai/workflow/index.md
+      - "Write": pages/ai/write/index.md
+      - "Xinghuo": pages/ai/xinghuo/index.md
+      - "Yiyan": pages/ai/yiyan/index.md
+    - "Ai Preview": pages/ai-preview/index.md
+    - "Api Doc": pages/api-doc/index.md
+    - "Api Encrypt": pages/api-encrypt/index.md
+    - "Area And Ip": pages/area-and-ip/index.md
+    - "Async Task": pages/async-task/index.md
+    - "工作流":
+      - "概览": pages/bpm/index.md
+      - "Assignee": pages/bpm/assignee/index.md
+      - "Dameng": pages/bpm/dameng/index.md
+      - "Expression": pages/bpm/expression/index.md
+      - "Listener": pages/bpm/listener/index.md
+      - "Message": pages/bpm/message/index.md
+      - "Model Designer Bpmn": pages/bpm/model-designer-bpmn/index.md
+      - "Model Designer Dingding": pages/bpm/model-designer-dingding/index.md
+      - "Multi Instance": pages/bpm/multi-instance/index.md
+      - "Process Instance": pages/bpm/process-instance/index.md
+      - "Sign": pages/bpm/sign/index.md
+      - "Task Delegation And Cc": pages/bpm/task-delegation-and-cc/index.md
+      - "Task Todo Done": pages/bpm/task-todo-done/index.md
+      - "Use Bpm Form": pages/bpm/use-bpm-form/index.md
+      - "Use Business Form": pages/bpm/use-business-form/index.md
+    - "Bpm Preview": pages/bpm-preview/index.md
+    - "Captcha": pages/captcha/index.md
+    - "更新日志":
+      - "2.0.0": pages/changelog/2.0.0/index.md
+      - "2.0.1": pages/changelog/2.0.1/index.md
+      - "2.1.0": pages/changelog/2.1.0/index.md
+      - "2.2.0": pages/changelog/2.2.0/index.md
+      - "2.3.0": pages/changelog/2.3.0/index.md
+      - "2.4.0": pages/changelog/2.4.0/index.md
+      - "2.4.1": pages/changelog/2.4.1/index.md
+      - "2.4.2": pages/changelog/2.4.2/index.md
+      - "2.5.0": pages/changelog/2.5.0/index.md
+      - "2.6.0": pages/changelog/2.6.0/index.md
+      - "2.6.1": pages/changelog/2.6.1/index.md
+      - "2025 08": pages/changelog/2025-08/index.md
+      - "2025 09": pages/changelog/2025-09/index.md
+      - "2025 10": pages/changelog/2025-10/index.md
+      - "2025 11": pages/changelog/2025-11/index.md
+      - "2025 12": pages/changelog/2025-12/index.md
+      - "2026 01": pages/changelog/2026-01/index.md
+      - "2026 02": pages/changelog/2026-02/index.md
+    - "Config Center": pages/config-center/index.md
+    - "CRM":
+      - "Build": pages/crm/build/index.md
+      - "Business": pages/crm/business/index.md
+      - "Clue": pages/crm/clue/index.md
+      - "Contract": pages/crm/contract/index.md
+      - "Customer": pages/crm/customer/index.md
+      - "Follow Up": pages/crm/follow-up/index.md
+      - "Permission": pages/crm/permission/index.md
+      - "Product": pages/crm/product/index.md
+      - "Receivable": pages/crm/receivable/index.md
+    - "Crm Preview": pages/crm-preview/index.md
+    - "Data Permission": pages/data-permission/index.md
+    - "Db Doc": pages/db-doc/index.md
+    - "Delete Code": pages/delete-code/index.md
+    - "Deployment 1Panel": pages/deployment-1panel/index.md
+    - "Deployment Baota": pages/deployment-baota/index.md
+    - "Deployment Docker": pages/deployment-docker/index.md
+    - "Deployment Jenkins": pages/deployment-jenkins/index.md
+    - "Deployment Linux": pages/deployment-linux/index.md
+    - "Deployment War": pages/deployment-war/index.md
+    - "Desensitize": pages/desensitize/index.md
+    - "Dev Env": pages/dev-env/index.md
+    - "Dev Hot Swap": pages/dev-hot-swap/index.md
+    - "Distributed Lock": pages/distributed-lock/index.md
+    - "Dynamic Datasource": pages/dynamic-datasource/index.md
+    - "ERP":
+      - "Build": pages/erp/build/index.md
+      - "Product": pages/erp/product/index.md
+      - "Purchase": pages/erp/purchase/index.md
+      - "销售": pages/erp/sale/index.md
+      - "Stock": pages/erp/stock/index.md
+      - "Stock In Out": pages/erp/stock-in-out/index.md
+      - "Stock Move Check": pages/erp/stock-move-check/index.md
+    - "Erp Preview": pages/erp-preview/index.md
+    - "Excel Import And Export": pages/excel-import-and-export/index.md
+    - "Exception": pages/exception/index.md
+    - "Feature": pages/feature/index.md
+    - "File": pages/file/index.md
+    - "Http Sign": pages/http-sign/index.md
+    - "Https": pages/https/index.md
+    - "Idempotent": pages/idempotent/index.md
+    - "Interview": pages/interview/index.md
+    - "Intro": pages/intro/index.md
+    - "IoT":
+      - "Alert Config": pages/iot/alert-config/index.md
+      - "Build": pages/iot/build/index.md
+      - "Data Rule": pages/iot/data-rule/index.md
+      - "Device": pages/iot/device/index.md
+      - "Device Register": pages/iot/device-register/index.md
+      - "Gateway Sub Device": pages/iot/gateway-sub-device/index.md
+      - "Ota": pages/iot/ota/index.md
+      - "Product": pages/iot/product/index.md
+      - "Protocol Coap": pages/iot/protocol-coap/index.md
+      - "Protocol Custom": pages/iot/protocol-custom/index.md
+      - "Protocol Emqx": pages/iot/protocol-emqx/index.md
+      - "Protocol Http": pages/iot/protocol-http/index.md
+      - "Protocol Modbus Client": pages/iot/protocol-modbus-client/index.md
+      - "Protocol Modbus Server": pages/iot/protocol-modbus-server/index.md
+      - "Protocol Mqtt": pages/iot/protocol-mqtt/index.md
+      - "Protocol Overview": pages/iot/protocol-overview/index.md
+      - "Protocol Tcp": pages/iot/protocol-tcp/index.md
+      - "Protocol Udp": pages/iot/protocol-udp/index.md
+      - "Protocol Websocket": pages/iot/protocol-websocket/index.md
+      - "Scene Rule": pages/iot/scene-rule/index.md
+      - "Thing Model": pages/iot/thing-model/index.md
+    - "Job": pages/job/index.md
+    - "Local Cache": pages/local-cache/index.md
+    - "Mail": pages/mail/index.md
+    - "商城":
+      - "Build": pages/mall/build/index.md
+      - "Diy": pages/mall/diy/index.md
+      - "Kefu": pages/mall/kefu/index.md
+      - "Point Activity": pages/mall/point-activity/index.md
+      - "Product Category": pages/mall/product-category/index.md
+      - "Product Comment": pages/mall/product-comment/index.md
+      - "Product Property": pages/mall/product-property/index.md
+      - "Product Spu Sku": pages/mall/product-spu-sku/index.md
+      - "Promotion Bargain": pages/mall/promotion-bargain/index.md
+      - "Promotion Combination": pages/mall/promotion-combination/index.md
+      - "Promotion Content": pages/mall/promotion-content/index.md
+      - "Promotion Coupon": pages/mall/promotion-coupon/index.md
+      - "Promotion Discount": pages/mall/promotion-discount/index.md
+      - "Promotion Record": pages/mall/promotion-record/index.md
+      - "Promotion Seckill": pages/mall/promotion-seckill/index.md
+      - "Statistics": pages/mall/statistics/index.md
+      - "Trade Aftersale": pages/mall/trade-aftersale/index.md
+      - "Trade Brokerage": pages/mall/trade-brokerage/index.md
+      - "Trade Cart": pages/mall/trade-cart/index.md
+      - "Trade Delivery Express": pages/mall/trade-delivery-express/index.md
+      - "Trade Delivery Pickup": pages/mall/trade-delivery-pickup/index.md
+      - "Trade Order": pages/mall/trade-order/index.md
+    - "Mall Preview": pages/mall-preview/index.md
+    - "会员":
+      - "Build": pages/member/build/index.md
+      - "Level": pages/member/level/index.md
+      - "User": pages/member/user/index.md
+      - "Weixin Lite Login": pages/member/weixin-lite-login/index.md
+      - "Weixin Lite Qrcode": pages/member/weixin-lite-qrcode/index.md
+      - "Weixin Lite Subscribe Message": pages/member/weixin-lite-subscribe-message/index.md
+      - "Weixin Mp Login": pages/member/weixin-mp-login/index.md
+    - "消息队列":
+      - "Event": pages/message-queue/event/index.md
+      - "Kafka": pages/message-queue/kafka/index.md
+      - "Rabbitmq": pages/message-queue/rabbitmq/index.md
+      - "Redis": pages/message-queue/redis/index.md
+      - "Rocketmq": pages/message-queue/rocketmq/index.md
+    - "Migrate Module": pages/migrate-module/index.md
+    - "Module New": pages/module-new/index.md
+    - "公众号":
+      - "Account": pages/mp/account/index.md
+      - "Article": pages/mp/article/index.md
+      - "Auto Reply": pages/mp/auto-reply/index.md
+      - "Build": pages/mp/build/index.md
+      - "Material": pages/mp/material/index.md
+      - "Menu": pages/mp/menu/index.md
+      - "Message": pages/mp/message/index.md
+      - "Message Template": pages/mp/message-template/index.md
+      - "Statistics": pages/mp/statistics/index.md
+      - "Tag": pages/mp/tag/index.md
+      - "User": pages/mp/user/index.md
+    - "Mybatis": pages/mybatis/index.md
+    - "Mybatis Pro": pages/mybatis-pro/index.md
+    - "Natapp": pages/natapp/index.md
+    - "代码生成":
+      - "概览": pages/new-feature/index.md
+      - "Admin Uniapp": pages/new-feature/admin-uniapp/index.md
+      - "Master Sub": pages/new-feature/master-sub/index.md
+      - "Tree": pages/new-feature/tree/index.md
+    - "Notify": pages/notify/index.md
+    - "Oauth2": pages/oauth2/index.md
+    - "Page Feature": pages/page-feature/index.md
+    - "支付":
+      - "Alipay Pay Demo": pages/pay/alipay-pay-demo/index.md
+      - "Alipay Transfer Demo": pages/pay/alipay-transfer-demo/index.md
+      - "Build": pages/pay/build/index.md
+      - "Mock": pages/pay/mock/index.md
+      - "Refund Demo": pages/pay/refund-demo/index.md
+      - "Wallet": pages/pay/wallet/index.md
+      - "Wx Lite Pay Demo": pages/pay/wx-lite-pay-demo/index.md
+      - "Wx Pub Pay Demo": pages/pay/wx-pub-pay-demo/index.md
+      - "Wx Transfer Demo": pages/pay/wx-transfer-demo/index.md
+    - "Project Intro": pages/project-intro/index.md
+    - "Project Rename": pages/project-rename/index.md
+    - "Quick Start": pages/quick-start/index.md
+    - "Quick Start Front": pages/quick-start-front/index.md
+    - "Qun": pages/qun/index.md
+    - "Rate Limiter": pages/rate-limiter/index.md
+    - "Redis Cache": pages/redis-cache/index.md
+    - "Remove Redis": pages/remove-redis/index.md
+    - "大屏":
+      - "概览": pages/report/index.md
+      - "Screen": pages/report/screen/index.md
+    - "Resource Permission": pages/resource-permission/index.md
+    - "SaaS":
+      - "概览": pages/saas-tenant/index.md
+      - "Dynamic": pages/saas-tenant/dynamic/index.md
+    - "销售":
+      - "Finance Payment Receipt": pages/sale/finance-payment-receipt/index.md
+    - "Sensitive Word": pages/sensitive-word/index.md
+    - "Server Monitor": pages/server-monitor/index.md
+    - "Server Protection": pages/server-protection/index.md
+    - "Sms": pages/sms/index.md
+    - "Social User": pages/social-user/index.md
+    - "Sql Update": pages/sql-update/index.md
+    - "System Log": pages/system-log/index.md
+    - "Technology": pages/technology/index.md
+    - "Unit Test": pages/unit-test/index.md
+    - "User Center": pages/user-center/index.md
+    - "Util": pages/util/index.md
+    - "Validator": pages/validator/index.md
+    - "Vben5 前端":
+      - "Components": pages/vben5/components/index.md
+      - "Config Center": pages/vben5/config-center/index.md
+      - "Debugger": pages/vben5/debugger/index.md
+      - "Dev Spec": pages/vben5/dev-spec/index.md
+      - "Dict": pages/vben5/dict/index.md
+      - "Format": pages/vben5/format/index.md
+      - "Icon Theme": pages/vben5/icon-theme/index.md
+      - "Route": pages/vben5/route/index.md
+      - "Util": pages/vben5/util/index.md
+    - "Video": pages/video/index.md
+    - "Vo": pages/vo/index.md
+    - "Vue2 前端":
+      - "Components": pages/vue2/components/index.md
+      - "Config Center": pages/vue2/config-center/index.md
+      - "Dev Spec": pages/vue2/dev-spec/index.md
+      - "Dict": pages/vue2/dict/index.md
+      - "Icon": pages/vue2/icon/index.md
+      - "Route": pages/vue2/route/index.md
+      - "Util": pages/vue2/util/index.md
+    - "Vue3 前端":
+      - "Components": pages/vue3/components/index.md
+      - "Config Center": pages/vue3/config-center/index.md
+      - "Crud Schema": pages/vue3/crud-schema/index.md
+      - "Debugger": pages/vue3/debugger/index.md
+      - "Dev Spec": pages/vue3/dev-spec/index.md
+      - "Dict": pages/vue3/dict/index.md
+      - "Format": pages/vue3/format/index.md
+      - "I18N": pages/vue3/i18n/index.md
+      - "Icon": pages/vue3/icon/index.md
+      - "Route": pages/vue3/route/index.md
+      - "Util": pages/vue3/util/index.md
+    - "Waibao": pages/waibao/index.md
+    - "Webhook": pages/webhook/index.md
+    - "Websocket": pages/websocket/index.md
+    - "Xinchuang Db": pages/xinchuang-db/index.md
