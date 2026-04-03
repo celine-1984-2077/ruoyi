@@ -1,0 +1,7 @@
+# AI 工作流
+
+Source: https://doc.iocoder.cn/ai/workflow/
+
+开发中，可见前后端 `ai` 包下的 `workflow` 部分！！！
+
+目前整体流程跑通，在处理各种 node 节点的执行能力。

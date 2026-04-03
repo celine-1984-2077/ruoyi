@@ -1,0 +1,558 @@
+# iocoder docs mirror
+
+Total pages: 277
+
+- [ruoyi-vue-pro 开发指南](pages/home/index.md)
+  - Source: https://doc.iocoder.cn/
+- [系统组件](pages/admin-uniapp/components/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/components/
+- [IDE 调试](pages/admin-uniapp/debugger/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/debugger/
+- [运行发布](pages/admin-uniapp/deploy/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/deploy/
+- [开发规范](pages/admin-uniapp/dev-spec/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/dev-spec/
+- [字典数据](pages/admin-uniapp/dict/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/dict/
+- [代码格式化](pages/admin-uniapp/format/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/format/
+- [图标、主题、国际化](pages/admin-uniapp/icon-theme/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/icon-theme/
+- [菜单路由](pages/admin-uniapp/route/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/route/
+- [通用方法](pages/admin-uniapp/util/index.md)
+  - Source: https://doc.iocoder.cn/admin-uniapp/util/
+- [AI 大模型演示](pages/ai-preview/index.md)
+  - Source: https://doc.iocoder.cn/ai-preview/
+- [【模型接入】微软 OpenAI](pages/ai/azure-openai/index.md)
+  - Source: https://doc.iocoder.cn/ai/azure-openai/
+- [【模型接入】百川智能](pages/ai/baichuan/index.md)
+  - Source: https://doc.iocoder.cn/ai/baichuan/
+- [功能开启](pages/ai/build/index.md)
+  - Source: https://doc.iocoder.cn/ai/build/
+- [AI 聊天对话](pages/ai/chat/index.md)
+  - Source: https://doc.iocoder.cn/ai/chat/
+- [【模型接入】Claude](pages/ai/claude/index.md)
+  - Source: https://doc.iocoder.cn/ai/claude/
+- [Coze 智能体](pages/ai/coze/index.md)
+  - Source: https://doc.iocoder.cn/ai/coze/
+- [【模型接入】DeepSeek](pages/ai/deep-seek/index.md)
+  - Source: https://doc.iocoder.cn/ai/deep-seek/
+- [Dify 工作流](pages/ai/dify/index.md)
+  - Source: https://doc.iocoder.cn/ai/dify/
+- [【模型接入】字节豆包](pages/ai/doubao/index.md)
+  - Source: https://doc.iocoder.cn/ai/doubao/
+- [FastGPT 工作流](pages/ai/fastgpt/index.md)
+  - Source: https://doc.iocoder.cn/ai/fastgpt/
+- [【模型接入】谷歌 Gemini](pages/ai/gemini/index.md)
+  - Source: https://doc.iocoder.cn/ai/gemini/
+- [【模型接入】智谱 GLM](pages/ai/glm/index.md)
+  - Source: https://doc.iocoder.cn/ai/glm/
+- [【模型接入】腾讯混元](pages/ai/hunyuan/index.md)
+  - Source: https://doc.iocoder.cn/ai/hunyuan/
+- [AI 绘画创作](pages/ai/image/index.md)
+  - Source: https://doc.iocoder.cn/ai/image/
+- [AI 知识库（RAG）](pages/ai/knowledge/index.md)
+  - Source: https://doc.iocoder.cn/ai/knowledge/
+- [【模型接入】LLAMA](pages/ai/llama/index.md)
+  - Source: https://doc.iocoder.cn/ai/llama/
+- [MCP Client 客户端](pages/ai/mcp-client/index.md)
+  - Source: https://doc.iocoder.cn/ai/mcp-client/
+- [MCP Server 服务端](pages/ai/mcp-server/index.md)
+  - Source: https://doc.iocoder.cn/ai/mcp-server/
+- [【模型接入】Midjourney](pages/ai/midjourney/index.md)
+  - Source: https://doc.iocoder.cn/ai/midjourney/
+- [AI 思维导图](pages/ai/mindmap/index.md)
+  - Source: https://doc.iocoder.cn/ai/mindmap/
+- [【模型接入】MiniMax](pages/ai/minimax/index.md)
+  - Source: https://doc.iocoder.cn/ai/minimax/
+- [【模型接入】月之月面](pages/ai/moonshot/index.md)
+  - Source: https://doc.iocoder.cn/ai/moonshot/
+- [AI 音乐创作](pages/ai/music/index.md)
+  - Source: https://doc.iocoder.cn/ai/music/
+- [【模型接入】OpenAI](pages/ai/openai/index.md)
+  - Source: https://doc.iocoder.cn/ai/openai/
+- [【模型接入】硅基流动](pages/ai/siliconflow/index.md)
+  - Source: https://doc.iocoder.cn/ai/siliconflow/
+- [【模型接入】Stable Diffusion](pages/ai/stable-diffusion/index.md)
+  - Source: https://doc.iocoder.cn/ai/stable-diffusion/
+- [【模型接入】Suno](pages/ai/suno/index.md)
+  - Source: https://doc.iocoder.cn/ai/suno/
+- [1. 推理模式（thinking）](pages/ai/thinking/index.md)
+  - Source: https://doc.iocoder.cn/ai/thinking/
+- [【模型接入】通义千问](pages/ai/tongyi/index.md)
+  - Source: https://doc.iocoder.cn/ai/tongyi/
+- [AI 工具（function calling）](pages/ai/tool/index.md)
+  - Source: https://doc.iocoder.cn/ai/tool/
+- [联网搜索](pages/ai/web-search/index.md)
+  - Source: https://doc.iocoder.cn/ai/web-search/
+- [AI 工作流](pages/ai/workflow/index.md)
+  - Source: https://doc.iocoder.cn/ai/workflow/
+- [AI 写作助手](pages/ai/write/index.md)
+  - Source: https://doc.iocoder.cn/ai/write/
+- [【模型接入】讯飞星火](pages/ai/xinghuo/index.md)
+  - Source: https://doc.iocoder.cn/ai/xinghuo/
+- [【模型接入】文心一言](pages/ai/yiyan/index.md)
+  - Source: https://doc.iocoder.cn/ai/yiyan/
+- [接口文档](pages/api-doc/index.md)
+  - Source: https://doc.iocoder.cn/api-doc/
+- [HTTP 接口加解密](pages/api-encrypt/index.md)
+  - Source: https://doc.iocoder.cn/api-encrypt/
+- [地区 & IP 库](pages/area-and-ip/index.md)
+  - Source: https://doc.iocoder.cn/area-and-ip/
+- [异步任务](pages/async-task/index.md)
+  - Source: https://doc.iocoder.cn/async-task/
+- [工作流演示](pages/bpm-preview/index.md)
+  - Source: https://doc.iocoder.cn/bpm-preview/
+- [功能开启](pages/bpm/index.md)
+  - Source: https://doc.iocoder.cn/bpm/
+- [选择审批人、发起人自选](pages/bpm/assignee/index.md)
+  - Source: https://doc.iocoder.cn/bpm/assignee/
+- [工作流（达梦适配）](pages/bpm/dameng/index.md)
+  - Source: https://doc.iocoder.cn/bpm/dameng/
+- [流程表达式](pages/bpm/expression/index.md)
+  - Source: https://doc.iocoder.cn/bpm/expression/
+- [执行监听器、任务监听器](pages/bpm/listener/index.md)
+  - Source: https://doc.iocoder.cn/bpm/listener/
+- [流程审批通知](pages/bpm/message/index.md)
+  - Source: https://doc.iocoder.cn/bpm/message/
+- [流程设计器（BPMN）](pages/bpm/model-designer-bpmn/index.md)
+  - Source: https://doc.iocoder.cn/bpm/model-designer-bpmn/
+- [流程设计器（钉钉、飞书）](pages/bpm/model-designer-dingding/index.md)
+  - Source: https://doc.iocoder.cn/bpm/model-designer-dingding/
+- [会签、或签、依次审批](pages/bpm/multi-instance/index.md)
+  - Source: https://doc.iocoder.cn/bpm/multi-instance/
+- [流程发起、取消、重新发起](pages/bpm/process-instance/index.md)
+  - Source: https://doc.iocoder.cn/bpm/process-instance/
+- [审批加签、减签](pages/bpm/sign/index.md)
+  - Source: https://doc.iocoder.cn/bpm/sign/
+- [审批转办、委派、抄送](pages/bpm/task-delegation-and-cc/index.md)
+  - Source: https://doc.iocoder.cn/bpm/task-delegation-and-cc/
+- [审批通过、不通过、驳回](pages/bpm/task-todo-done/index.md)
+  - Source: https://doc.iocoder.cn/bpm/task-todo-done/
+- [审批接入（流程表单）](pages/bpm/use-bpm-form/index.md)
+  - Source: https://doc.iocoder.cn/bpm/use-bpm-form/
+- [审批接入（业务表单）](pages/bpm/use-business-form/index.md)
+  - Source: https://doc.iocoder.cn/bpm/use-business-form/
+- [验证码](pages/captcha/index.md)
+  - Source: https://doc.iocoder.cn/captcha/
+- [【v2.0.0】2024-01-26](pages/changelog/2.0.0/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.0.0/
+- [【v2.0.1】2024-03-01](pages/changelog/2.0.1/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.0.1/
+- [【v2.1.0】2024-05-05](pages/changelog/2.1.0/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.1.0/
+- [【v2.2.0】2024-08-02](pages/changelog/2.2.0/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.2.0/
+- [【v2.3.0】2024-10-07](pages/changelog/2.3.0/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.3.0/
+- [【v2.4.0】2024-12-31](pages/changelog/2.4.0/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.4.0/
+- [【v2.4.1】2025-02-09](pages/changelog/2.4.1/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.4.1/
+- [【v2.4.2】2025-04-12](pages/changelog/2.4.2/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.4.2/
+- [【v2.5.0】2025-05-13](pages/changelog/2.5.0/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.5.0/
+- [【v2-6-0】2025-06-07](pages/changelog/2.6.0/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.6.0/
+- [【v2-6-1】2025-07-19](pages/changelog/2.6.1/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2.6.1/
+- [【v2025-08】](pages/changelog/2025-08/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2025-08/
+- [【v2025-09】](pages/changelog/2025-09/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2025-09/
+- [【v2025-10】](pages/changelog/2025-10/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2025-10/
+- [【v2025-11】](pages/changelog/2025-11/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2025-11/
+- [【v2025-12】](pages/changelog/2025-12/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2025-12/
+- [【v2026-01】](pages/changelog/2026-01/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2026-01/
+- [【v2026-02】开发中](pages/changelog/2026-02/index.md)
+  - Source: https://doc.iocoder.cn/changelog/2026-02/
+- [配置管理](pages/config-center/index.md)
+  - Source: https://doc.iocoder.cn/config-center/
+- [CRM 演示](pages/crm-preview/index.md)
+  - Source: https://doc.iocoder.cn/crm-preview/
+- [功能开启](pages/crm/build/index.md)
+  - Source: https://doc.iocoder.cn/crm/build/
+- [【商机】商机管理、商机状态](pages/crm/business/index.md)
+  - Source: https://doc.iocoder.cn/crm/business/
+- [【线索】线索管理](pages/crm/clue/index.md)
+  - Source: https://doc.iocoder.cn/crm/clue/
+- [【合同】合同管理、合同提醒](pages/crm/contract/index.md)
+  - Source: https://doc.iocoder.cn/crm/contract/
+- [【客户】客户管理、公海客户](pages/crm/customer/index.md)
+  - Source: https://doc.iocoder.cn/crm/customer/
+- [【通用】跟进记录、待办事项](pages/crm/follow-up/index.md)
+  - Source: https://doc.iocoder.cn/crm/follow-up/
+- [【通用】数据权限](pages/crm/permission/index.md)
+  - Source: https://doc.iocoder.cn/crm/permission/
+- [【产品】产品管理、产品分类](pages/crm/product/index.md)
+  - Source: https://doc.iocoder.cn/crm/product/
+- [【回款】回款管理、回款计划](pages/crm/receivable/index.md)
+  - Source: https://doc.iocoder.cn/crm/receivable/
+- [数据权限](pages/data-permission/index.md)
+  - Source: https://doc.iocoder.cn/data-permission/
+- [数据库文档](pages/db-doc/index.md)
+  - Source: https://doc.iocoder.cn/db-doc/
+- [删除功能（以租户为例）](pages/delete-code/index.md)
+  - Source: https://doc.iocoder.cn/delete-code/
+- [1Panel 部署](pages/deployment-1panel/index.md)
+  - Source: https://doc.iocoder.cn/deployment-1panel/
+- [宝塔部署](pages/deployment-baota/index.md)
+  - Source: https://doc.iocoder.cn/deployment-baota/
+- [Docker 部署](pages/deployment-docker/index.md)
+  - Source: https://doc.iocoder.cn/deployment-docker/
+- [Jenkins 部署](pages/deployment-jenkins/index.md)
+  - Source: https://doc.iocoder.cn/deployment-jenkins/
+- [Linux 部署](pages/deployment-linux/index.md)
+  - Source: https://doc.iocoder.cn/deployment-linux/
+- [Tomcat 部署](pages/deployment-war/index.md)
+  - Source: https://doc.iocoder.cn/deployment-war/
+- [数据脱敏、字段权限](pages/desensitize/index.md)
+  - Source: https://doc.iocoder.cn/desensitize/
+- [开发环境](pages/dev-env/index.md)
+  - Source: https://doc.iocoder.cn/dev-env/
+- [代码热加载](pages/dev-hot-swap/index.md)
+  - Source: https://doc.iocoder.cn/dev-hot-swap/
+- [分布式锁](pages/distributed-lock/index.md)
+  - Source: https://doc.iocoder.cn/distributed-lock/
+- [多数据源（读写分离）、事务](pages/dynamic-datasource/index.md)
+  - Source: https://doc.iocoder.cn/dynamic-datasource/
+- [ERP 演示](pages/erp-preview/index.md)
+  - Source: https://doc.iocoder.cn/erp-preview/
+- [功能开启](pages/erp/build/index.md)
+  - Source: https://doc.iocoder.cn/erp/build/
+- [【产品】产品信息、分类、单位](pages/erp/product/index.md)
+  - Source: https://doc.iocoder.cn/erp/product/
+- [【采购】采购订单、入库、退货](pages/erp/purchase/index.md)
+  - Source: https://doc.iocoder.cn/erp/purchase/
+- [【销售】销售订单、出库、退货](pages/erp/sale/index.md)
+  - Source: https://doc.iocoder.cn/erp/sale/
+- [【库存】其它入库、其它出库](pages/erp/stock-in-out/index.md)
+  - Source: https://doc.iocoder.cn/erp/stock-in-out/
+- [【库存】库存调拨、库存盘点](pages/erp/stock-move-check/index.md)
+  - Source: https://doc.iocoder.cn/erp/stock-move-check/
+- [【库存】产品库存、库存明细](pages/erp/stock/index.md)
+  - Source: https://doc.iocoder.cn/erp/stock/
+- [Excel 导入导出](pages/excel-import-and-export/index.md)
+  - Source: https://doc.iocoder.cn/excel-import-and-export/
+- [异常处理（错误码）](pages/exception/index.md)
+  - Source: https://doc.iocoder.cn/exception/
+- [功能列表](pages/feature/index.md)
+  - Source: https://doc.iocoder.cn/feature/
+- [文件存储（上传下载）](pages/file/index.md)
+  - Source: https://doc.iocoder.cn/file/
+- [HTTP 接口签名（防篡改）](pages/http-sign/index.md)
+  - Source: https://doc.iocoder.cn/http-sign/
+- [HTTPS 证书](pages/https/index.md)
+  - Source: https://doc.iocoder.cn/https/
+- [幂等性（防重复提交）](pages/idempotent/index.md)
+  - Source: https://doc.iocoder.cn/idempotent/
+- [面试题、简历模版、简历优化](pages/interview/index.md)
+  - Source: https://doc.iocoder.cn/interview/
+- [简介](pages/intro/index.md)
+  - Source: https://doc.iocoder.cn/intro/
+- [告警配置](pages/iot/alert-config/index.md)
+  - Source: https://doc.iocoder.cn/iot/alert-config/
+- [功能开启](pages/iot/build/index.md)
+  - Source: https://doc.iocoder.cn/iot/build/
+- [数据流转](pages/iot/data-rule/index.md)
+  - Source: https://doc.iocoder.cn/iot/data-rule/
+- [设备动态注册](pages/iot/device-register/index.md)
+  - Source: https://doc.iocoder.cn/iot/device-register/
+- [设备管理](pages/iot/device/index.md)
+  - Source: https://doc.iocoder.cn/iot/device/
+- [设备网关与子设备](pages/iot/gateway-sub-device/index.md)
+  - Source: https://doc.iocoder.cn/iot/gateway-sub-device/
+- [OTA 固件升级](pages/iot/ota/index.md)
+  - Source: https://doc.iocoder.cn/iot/ota/
+- [产品管理](pages/iot/product/index.md)
+  - Source: https://doc.iocoder.cn/iot/product/
+- [设备接入（CoAP 协议）](pages/iot/protocol-coap/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-coap/
+- [设备接入（自定义协议）](pages/iot/protocol-custom/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-custom/
+- [设备接入（EMQX 协议）](pages/iot/protocol-emqx/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-emqx/
+- [设备接入（HTTP 协议）](pages/iot/protocol-http/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-http/
+- [设备接入（Modbus Client 模式）](pages/iot/protocol-modbus-client/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-modbus-client/
+- [设备接入（Modbus Server 模式）](pages/iot/protocol-modbus-server/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-modbus-server/
+- [设备接入（MQTT 协议）](pages/iot/protocol-mqtt/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-mqtt/
+- [设备接入（概述）](pages/iot/protocol-overview/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-overview/
+- [设备接入（TCP 协议）](pages/iot/protocol-tcp/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-tcp/
+- [设备接入（UDP 协议）](pages/iot/protocol-udp/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-udp/
+- [设备接入（WebSocket 协议）](pages/iot/protocol-websocket/index.md)
+  - Source: https://doc.iocoder.cn/iot/protocol-websocket/
+- [场景联动](pages/iot/scene-rule/index.md)
+  - Source: https://doc.iocoder.cn/iot/scene-rule/
+- [物模型配置](pages/iot/thing-model/index.md)
+  - Source: https://doc.iocoder.cn/iot/thing-model/
+- [定时任务](pages/job/index.md)
+  - Source: https://doc.iocoder.cn/job/
+- [本地缓存](pages/local-cache/index.md)
+  - Source: https://doc.iocoder.cn/local-cache/
+- [邮件配置](pages/mail/index.md)
+  - Source: https://doc.iocoder.cn/mail/
+- [商城演示](pages/mall-preview/index.md)
+  - Source: https://doc.iocoder.cn/mall-preview/
+- [功能开启](pages/mall/build/index.md)
+  - Source: https://doc.iocoder.cn/mall/build/
+- [商城装修](pages/mall/diy/index.md)
+  - Source: https://doc.iocoder.cn/mall/diy/
+- [在线客服](pages/mall/kefu/index.md)
+  - Source: https://doc.iocoder.cn/mall/kefu/
+- [【营销】积分商城](pages/mall/point-activity/index.md)
+  - Source: https://doc.iocoder.cn/mall/point-activity/
+- [【商品】商品分类](pages/mall/product-category/index.md)
+  - Source: https://doc.iocoder.cn/mall/product-category/
+- [【商品】商品评价](pages/mall/product-comment/index.md)
+  - Source: https://doc.iocoder.cn/mall/product-comment/
+- [【商品】商品属性](pages/mall/product-property/index.md)
+  - Source: https://doc.iocoder.cn/mall/product-property/
+- [【商品】商品 SPU 与 SKU](pages/mall/product-spu-sku/index.md)
+  - Source: https://doc.iocoder.cn/mall/product-spu-sku/
+- [【营销】砍价活动](pages/mall/promotion-bargain/index.md)
+  - Source: https://doc.iocoder.cn/mall/promotion-bargain/
+- [【营销】拼团活动](pages/mall/promotion-combination/index.md)
+  - Source: https://doc.iocoder.cn/mall/promotion-combination/
+- [【营销】内容管理](pages/mall/promotion-content/index.md)
+  - Source: https://doc.iocoder.cn/mall/promotion-content/
+- [【营销】优惠劵](pages/mall/promotion-coupon/index.md)
+  - Source: https://doc.iocoder.cn/mall/promotion-coupon/
+- [【营销】限时折扣](pages/mall/promotion-discount/index.md)
+  - Source: https://doc.iocoder.cn/mall/promotion-discount/
+- [【营销】满减送活动](pages/mall/promotion-record/index.md)
+  - Source: https://doc.iocoder.cn/mall/promotion-record/
+- [【营销】秒杀活动](pages/mall/promotion-seckill/index.md)
+  - Source: https://doc.iocoder.cn/mall/promotion-seckill/
+- [【统计】会员、商品、交易统计](pages/mall/statistics/index.md)
+  - Source: https://doc.iocoder.cn/mall/statistics/
+- [【交易】售后退款](pages/mall/trade-aftersale/index.md)
+  - Source: https://doc.iocoder.cn/mall/trade-aftersale/
+- [【交易】分销返佣](pages/mall/trade-brokerage/index.md)
+  - Source: https://doc.iocoder.cn/mall/trade-brokerage/
+- [【交易】购物车](pages/mall/trade-cart/index.md)
+  - Source: https://doc.iocoder.cn/mall/trade-cart/
+- [【交易】快递发货](pages/mall/trade-delivery-express/index.md)
+  - Source: https://doc.iocoder.cn/mall/trade-delivery-express/
+- [【交易】门店自提](pages/mall/trade-delivery-pickup/index.md)
+  - Source: https://doc.iocoder.cn/mall/trade-delivery-pickup/
+- [【交易】交易订单](pages/mall/trade-order/index.md)
+  - Source: https://doc.iocoder.cn/mall/trade-order/
+- [功能开启](pages/member/build/index.md)
+  - Source: https://doc.iocoder.cn/member/build/
+- [会员等级、积分、签到](pages/member/level/index.md)
+  - Source: https://doc.iocoder.cn/member/level/
+- [会员用户、标签、分组](pages/member/user/index.md)
+  - Source: https://doc.iocoder.cn/member/user/
+- [微信小程序登录](pages/member/weixin-lite-login/index.md)
+  - Source: https://doc.iocoder.cn/member/weixin-lite-login/
+- [微信小程序码](pages/member/weixin-lite-qrcode/index.md)
+  - Source: https://doc.iocoder.cn/member/weixin-lite-qrcode/
+- [微信小程序订阅消息](pages/member/weixin-lite-subscribe-message/index.md)
+  - Source: https://doc.iocoder.cn/member/weixin-lite-subscribe-message/
+- [微信公众号登录](pages/member/weixin-mp-login/index.md)
+  - Source: https://doc.iocoder.cn/member/weixin-mp-login/
+- [消息队列（内存）](pages/message-queue/event/index.md)
+  - Source: https://doc.iocoder.cn/message-queue/event/
+- [消息队列（Kafka）](pages/message-queue/kafka/index.md)
+  - Source: https://doc.iocoder.cn/message-queue/kafka/
+- [消息队列（RabbitMQ）](pages/message-queue/rabbitmq/index.md)
+  - Source: https://doc.iocoder.cn/message-queue/rabbitmq/
+- [消息队列（Redis）](pages/message-queue/redis/index.md)
+  - Source: https://doc.iocoder.cn/message-queue/redis/
+- [消息队列（RocketMQ）](pages/message-queue/rocketmq/index.md)
+  - Source: https://doc.iocoder.cn/message-queue/rocketmq/
+- [迁移模块（适合新项目）](pages/migrate-module/index.md)
+  - Source: https://doc.iocoder.cn/migrate-module/
+- [新建模块](pages/module-new/index.md)
+  - Source: https://doc.iocoder.cn/module-new/
+- [公众号接入](pages/mp/account/index.md)
+  - Source: https://doc.iocoder.cn/mp/account/
+- [公众号图文](pages/mp/article/index.md)
+  - Source: https://doc.iocoder.cn/mp/article/
+- [自动回复](pages/mp/auto-reply/index.md)
+  - Source: https://doc.iocoder.cn/mp/auto-reply/
+- [功能开启](pages/mp/build/index.md)
+  - Source: https://doc.iocoder.cn/mp/build/
+- [公众号素材](pages/mp/material/index.md)
+  - Source: https://doc.iocoder.cn/mp/material/
+- [公众号菜单](pages/mp/menu/index.md)
+  - Source: https://doc.iocoder.cn/mp/menu/
+- [模版消息](pages/mp/message-template/index.md)
+  - Source: https://doc.iocoder.cn/mp/message-template/
+- [公众号消息](pages/mp/message/index.md)
+  - Source: https://doc.iocoder.cn/mp/message/
+- [公众号统计](pages/mp/statistics/index.md)
+  - Source: https://doc.iocoder.cn/mp/statistics/
+- [公众号标签](pages/mp/tag/index.md)
+  - Source: https://doc.iocoder.cn/mp/tag/
+- [公众号粉丝](pages/mp/user/index.md)
+  - Source: https://doc.iocoder.cn/mp/user/
+- [MyBatis 联表&分页查询](pages/mybatis-pro/index.md)
+  - Source: https://doc.iocoder.cn/mybatis-pro/
+- [MyBatis 数据库](pages/mybatis/index.md)
+  - Source: https://doc.iocoder.cn/mybatis/
+- [内网穿透](pages/natapp/index.md)
+  - Source: https://doc.iocoder.cn/natapp/
+- [代码生成【单表】（新增功能）](pages/new-feature/index.md)
+  - Source: https://doc.iocoder.cn/new-feature/
+- [3. 代码运行](pages/new-feature/admin-uniapp/index.md)
+  - Source: https://doc.iocoder.cn/new-feature/admin-uniapp/
+- [3. 代码运行](pages/new-feature/master-sub/index.md)
+  - Source: https://doc.iocoder.cn/new-feature/master-sub/
+- [3. 代码运行](pages/new-feature/tree/index.md)
+  - Source: https://doc.iocoder.cn/new-feature/tree/
+- [站内信配置](pages/notify/index.md)
+  - Source: https://doc.iocoder.cn/notify/
+- [OAuth 2.0（SSO 单点登录)](pages/oauth2/index.md)
+  - Source: https://doc.iocoder.cn/oauth2/
+- [分页实现](pages/page-feature/index.md)
+  - Source: https://doc.iocoder.cn/page-feature/
+- [支付宝支付接入](pages/pay/alipay-pay-demo/index.md)
+  - Source: https://doc.iocoder.cn/pay/alipay-pay-demo/
+- [支付宝转账接入](pages/pay/alipay-transfer-demo/index.md)
+  - Source: https://doc.iocoder.cn/pay/alipay-transfer-demo/
+- [功能开启](pages/pay/build/index.md)
+  - Source: https://doc.iocoder.cn/pay/build/
+- [模拟支付、退款](pages/pay/mock/index.md)
+  - Source: https://doc.iocoder.cn/pay/mock/
+- [支付宝、微信退款接入](pages/pay/refund-demo/index.md)
+  - Source: https://doc.iocoder.cn/pay/refund-demo/
+- [钱包充值、支付、退款](pages/pay/wallet/index.md)
+  - Source: https://doc.iocoder.cn/pay/wallet/
+- [微信小程序支付接入](pages/pay/wx-lite-pay-demo/index.md)
+  - Source: https://doc.iocoder.cn/pay/wx-lite-pay-demo/
+- [微信公众号支付接入](pages/pay/wx-pub-pay-demo/index.md)
+  - Source: https://doc.iocoder.cn/pay/wx-pub-pay-demo/
+- [微信转账接入](pages/pay/wx-transfer-demo/index.md)
+  - Source: https://doc.iocoder.cn/pay/wx-transfer-demo/
+- [项目结构](pages/project-intro/index.md)
+  - Source: https://doc.iocoder.cn/project-intro/
+- [一键改包](pages/project-rename/index.md)
+  - Source: https://doc.iocoder.cn/project-rename/
+- [快速启动（前端项目）](pages/quick-start-front/index.md)
+  - Source: https://doc.iocoder.cn/quick-start-front/
+- [快速启动（后端项目）](pages/quick-start/index.md)
+  - Source: https://doc.iocoder.cn/quick-start/
+- [交流群](pages/qun/index.md)
+  - Source: https://doc.iocoder.cn/qun/
+- [请求限流（RateLimiter）](pages/rate-limiter/index.md)
+  - Source: https://doc.iocoder.cn/rate-limiter/
+- [Redis 缓存](pages/redis-cache/index.md)
+  - Source: https://doc.iocoder.cn/redis-cache/
+- [如何去除 Redis 缓存](pages/remove-redis/index.md)
+  - Source: https://doc.iocoder.cn/remove-redis/
+- [报表设计器](pages/report/index.md)
+  - Source: https://doc.iocoder.cn/report/
+- [大屏设计器](pages/report/screen/index.md)
+  - Source: https://doc.iocoder.cn/report/screen/
+- [功能权限](pages/resource-permission/index.md)
+  - Source: https://doc.iocoder.cn/resource-permission/
+- [SaaS 多租户【字段隔离】](pages/saas-tenant/index.md)
+  - Source: https://doc.iocoder.cn/saas-tenant/
+- [SaaS 多租户【数据库隔离】](pages/saas-tenant/dynamic/index.md)
+  - Source: https://doc.iocoder.cn/saas-tenant/dynamic/
+- [【财务】采购付款、销售收款](pages/sale/finance-payment-receipt/index.md)
+  - Source: https://doc.iocoder.cn/sale/finance-payment-receipt/
+- [敏感词](pages/sensitive-word/index.md)
+  - Source: https://doc.iocoder.cn/sensitive-word/
+- [服务监控](pages/server-monitor/index.md)
+  - Source: https://doc.iocoder.cn/server-monitor/
+- [限流熔断](pages/server-protection/index.md)
+  - Source: https://doc.iocoder.cn/server-protection/
+- [短信配置](pages/sms/index.md)
+  - Source: https://doc.iocoder.cn/sms/
+- [三方登录](pages/social-user/index.md)
+  - Source: https://doc.iocoder.cn/social-user/
+- [表结构变更（版本升级）](pages/sql-update/index.md)
+  - Source: https://doc.iocoder.cn/sql-update/
+- [操作日志、访问日志、异常日志](pages/system-log/index.md)
+  - Source: https://doc.iocoder.cn/system-log/
+- [技术选型](pages/technology/index.md)
+  - Source: https://doc.iocoder.cn/technology/
+- [单元测试](pages/unit-test/index.md)
+  - Source: https://doc.iocoder.cn/unit-test/
+- [用户体系](pages/user-center/index.md)
+  - Source: https://doc.iocoder.cn/user-center/
+- [工具类 Util](pages/util/index.md)
+  - Source: https://doc.iocoder.cn/util/
+- [参数校验、时间传参](pages/validator/index.md)
+  - Source: https://doc.iocoder.cn/validator/
+- [系统组件](pages/vben5/components/index.md)
+  - Source: https://doc.iocoder.cn/vben5/components/
+- [配置读取](pages/vben5/config-center/index.md)
+  - Source: https://doc.iocoder.cn/vben5/config-center/
+- [IDE 调试](pages/vben5/debugger/index.md)
+  - Source: https://doc.iocoder.cn/vben5/debugger/
+- [开发规范](pages/vben5/dev-spec/index.md)
+  - Source: https://doc.iocoder.cn/vben5/dev-spec/
+- [字典数据](pages/vben5/dict/index.md)
+  - Source: https://doc.iocoder.cn/vben5/dict/
+- [代码格式化](pages/vben5/format/index.md)
+  - Source: https://doc.iocoder.cn/vben5/format/
+- [图标、主题、国际化](pages/vben5/icon-theme/index.md)
+  - Source: https://doc.iocoder.cn/vben5/icon-theme/
+- [菜单路由](pages/vben5/route/index.md)
+  - Source: https://doc.iocoder.cn/vben5/route/
+- [通用方法](pages/vben5/util/index.md)
+  - Source: https://doc.iocoder.cn/vben5/util/
+- [视频教程](pages/video/index.md)
+  - Source: https://doc.iocoder.cn/video/
+- [VO 对象转换、数据翻译](pages/vo/index.md)
+  - Source: https://doc.iocoder.cn/vo/
+- [系统组件](pages/vue2/components/index.md)
+  - Source: https://doc.iocoder.cn/vue2/components/
+- [配置读取](pages/vue2/config-center/index.md)
+  - Source: https://doc.iocoder.cn/vue2/config-center/
+- [开发规范](pages/vue2/dev-spec/index.md)
+  - Source: https://doc.iocoder.cn/vue2/dev-spec/
+- [字典数据](pages/vue2/dict/index.md)
+  - Source: https://doc.iocoder.cn/vue2/dict/
+- [Icon 图标](pages/vue2/icon/index.md)
+  - Source: https://doc.iocoder.cn/vue2/icon/
+- [菜单路由](pages/vue2/route/index.md)
+  - Source: https://doc.iocoder.cn/vue2/route/
+- [通用方法](pages/vue2/util/index.md)
+  - Source: https://doc.iocoder.cn/vue2/util/
+- [系统组件](pages/vue3/components/index.md)
+  - Source: https://doc.iocoder.cn/vue3/components/
+- [配置读取](pages/vue3/config-center/index.md)
+  - Source: https://doc.iocoder.cn/vue3/config-center/
+- [CRUD 组件](pages/vue3/crud-schema/index.md)
+  - Source: https://doc.iocoder.cn/vue3/crud-schema/
+- [IDE 调试](pages/vue3/debugger/index.md)
+  - Source: https://doc.iocoder.cn/vue3/debugger/
+- [开发规范](pages/vue3/dev-spec/index.md)
+  - Source: https://doc.iocoder.cn/vue3/dev-spec/
+- [字典数据](pages/vue3/dict/index.md)
+  - Source: https://doc.iocoder.cn/vue3/dict/
+- [代码格式化](pages/vue3/format/index.md)
+  - Source: https://doc.iocoder.cn/vue3/format/
+- [国际化](pages/vue3/i18n/index.md)
+  - Source: https://doc.iocoder.cn/vue3/i18n/
+- [Icon 图标](pages/vue3/icon/index.md)
+  - Source: https://doc.iocoder.cn/vue3/icon/
+- [菜单路由](pages/vue3/route/index.md)
+  - Source: https://doc.iocoder.cn/vue3/route/
+- [通用方法](pages/vue3/util/index.md)
+  - Source: https://doc.iocoder.cn/vue3/util/
+- [项目外包](pages/waibao/index.md)
+  - Source: https://doc.iocoder.cn/waibao/
+- [Webhook（钉钉、飞书、企微）](pages/webhook/index.md)
+  - Source: https://doc.iocoder.cn/webhook/
+- [WebSocket 实时通信](pages/websocket/index.md)
+  - Source: https://doc.iocoder.cn/websocket/
+- [国产信创数据库（DM 达梦、大金、OpenGauss）](pages/xinchuang-db/index.md)
+  - Source: https://doc.iocoder.cn/xinchuang-db/

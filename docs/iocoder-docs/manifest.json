@@ -1,0 +1,1387 @@
+[
+  {
+    "title": "ruoyi-vue-pro 开发指南",
+    "url": "https://doc.iocoder.cn/",
+    "path": "pages/home/index.md"
+  },
+  {
+    "title": "系统组件",
+    "url": "https://doc.iocoder.cn/admin-uniapp/components/",
+    "path": "pages/admin-uniapp/components/index.md"
+  },
+  {
+    "title": "IDE 调试",
+    "url": "https://doc.iocoder.cn/admin-uniapp/debugger/",
+    "path": "pages/admin-uniapp/debugger/index.md"
+  },
+  {
+    "title": "运行发布",
+    "url": "https://doc.iocoder.cn/admin-uniapp/deploy/",
+    "path": "pages/admin-uniapp/deploy/index.md"
+  },
+  {
+    "title": "开发规范",
+    "url": "https://doc.iocoder.cn/admin-uniapp/dev-spec/",
+    "path": "pages/admin-uniapp/dev-spec/index.md"
+  },
+  {
+    "title": "字典数据",
+    "url": "https://doc.iocoder.cn/admin-uniapp/dict/",
+    "path": "pages/admin-uniapp/dict/index.md"
+  },
+  {
+    "title": "代码格式化",
+    "url": "https://doc.iocoder.cn/admin-uniapp/format/",
+    "path": "pages/admin-uniapp/format/index.md"
+  },
+  {
+    "title": "图标、主题、国际化",
+    "url": "https://doc.iocoder.cn/admin-uniapp/icon-theme/",
+    "path": "pages/admin-uniapp/icon-theme/index.md"
+  },
+  {
+    "title": "菜单路由",
+    "url": "https://doc.iocoder.cn/admin-uniapp/route/",
+    "path": "pages/admin-uniapp/route/index.md"
+  },
+  {
+    "title": "通用方法",
+    "url": "https://doc.iocoder.cn/admin-uniapp/util/",
+    "path": "pages/admin-uniapp/util/index.md"
+  },
+  {
+    "title": "AI 大模型演示",
+    "url": "https://doc.iocoder.cn/ai-preview/",
+    "path": "pages/ai-preview/index.md"
+  },
+  {
+    "title": "【模型接入】微软 OpenAI",
+    "url": "https://doc.iocoder.cn/ai/azure-openai/",
+    "path": "pages/ai/azure-openai/index.md"
+  },
+  {
+    "title": "【模型接入】百川智能",
+    "url": "https://doc.iocoder.cn/ai/baichuan/",
+    "path": "pages/ai/baichuan/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/ai/build/",
+    "path": "pages/ai/build/index.md"
+  },
+  {
+    "title": "AI 聊天对话",
+    "url": "https://doc.iocoder.cn/ai/chat/",
+    "path": "pages/ai/chat/index.md"
+  },
+  {
+    "title": "【模型接入】Claude",
+    "url": "https://doc.iocoder.cn/ai/claude/",
+    "path": "pages/ai/claude/index.md"
+  },
+  {
+    "title": "Coze 智能体",
+    "url": "https://doc.iocoder.cn/ai/coze/",
+    "path": "pages/ai/coze/index.md"
+  },
+  {
+    "title": "【模型接入】DeepSeek",
+    "url": "https://doc.iocoder.cn/ai/deep-seek/",
+    "path": "pages/ai/deep-seek/index.md"
+  },
+  {
+    "title": "Dify 工作流",
+    "url": "https://doc.iocoder.cn/ai/dify/",
+    "path": "pages/ai/dify/index.md"
+  },
+  {
+    "title": "【模型接入】字节豆包",
+    "url": "https://doc.iocoder.cn/ai/doubao/",
+    "path": "pages/ai/doubao/index.md"
+  },
+  {
+    "title": "FastGPT 工作流",
+    "url": "https://doc.iocoder.cn/ai/fastgpt/",
+    "path": "pages/ai/fastgpt/index.md"
+  },
+  {
+    "title": "【模型接入】谷歌 Gemini",
+    "url": "https://doc.iocoder.cn/ai/gemini/",
+    "path": "pages/ai/gemini/index.md"
+  },
+  {
+    "title": "【模型接入】智谱 GLM",
+    "url": "https://doc.iocoder.cn/ai/glm/",
+    "path": "pages/ai/glm/index.md"
+  },
+  {
+    "title": "【模型接入】腾讯混元",
+    "url": "https://doc.iocoder.cn/ai/hunyuan/",
+    "path": "pages/ai/hunyuan/index.md"
+  },
+  {
+    "title": "AI 绘画创作",
+    "url": "https://doc.iocoder.cn/ai/image/",
+    "path": "pages/ai/image/index.md"
+  },
+  {
+    "title": "AI 知识库（RAG）",
+    "url": "https://doc.iocoder.cn/ai/knowledge/",
+    "path": "pages/ai/knowledge/index.md"
+  },
+  {
+    "title": "【模型接入】LLAMA",
+    "url": "https://doc.iocoder.cn/ai/llama/",
+    "path": "pages/ai/llama/index.md"
+  },
+  {
+    "title": "MCP Client 客户端",
+    "url": "https://doc.iocoder.cn/ai/mcp-client/",
+    "path": "pages/ai/mcp-client/index.md"
+  },
+  {
+    "title": "MCP Server 服务端",
+    "url": "https://doc.iocoder.cn/ai/mcp-server/",
+    "path": "pages/ai/mcp-server/index.md"
+  },
+  {
+    "title": "【模型接入】Midjourney",
+    "url": "https://doc.iocoder.cn/ai/midjourney/",
+    "path": "pages/ai/midjourney/index.md"
+  },
+  {
+    "title": "AI 思维导图",
+    "url": "https://doc.iocoder.cn/ai/mindmap/",
+    "path": "pages/ai/mindmap/index.md"
+  },
+  {
+    "title": "【模型接入】MiniMax",
+    "url": "https://doc.iocoder.cn/ai/minimax/",
+    "path": "pages/ai/minimax/index.md"
+  },
+  {
+    "title": "【模型接入】月之月面",
+    "url": "https://doc.iocoder.cn/ai/moonshot/",
+    "path": "pages/ai/moonshot/index.md"
+  },
+  {
+    "title": "AI 音乐创作",
+    "url": "https://doc.iocoder.cn/ai/music/",
+    "path": "pages/ai/music/index.md"
+  },
+  {
+    "title": "【模型接入】OpenAI",
+    "url": "https://doc.iocoder.cn/ai/openai/",
+    "path": "pages/ai/openai/index.md"
+  },
+  {
+    "title": "【模型接入】硅基流动",
+    "url": "https://doc.iocoder.cn/ai/siliconflow/",
+    "path": "pages/ai/siliconflow/index.md"
+  },
+  {
+    "title": "【模型接入】Stable Diffusion",
+    "url": "https://doc.iocoder.cn/ai/stable-diffusion/",
+    "path": "pages/ai/stable-diffusion/index.md"
+  },
+  {
+    "title": "【模型接入】Suno",
+    "url": "https://doc.iocoder.cn/ai/suno/",
+    "path": "pages/ai/suno/index.md"
+  },
+  {
+    "title": "1. 推理模式（thinking）",
+    "url": "https://doc.iocoder.cn/ai/thinking/",
+    "path": "pages/ai/thinking/index.md"
+  },
+  {
+    "title": "【模型接入】通义千问",
+    "url": "https://doc.iocoder.cn/ai/tongyi/",
+    "path": "pages/ai/tongyi/index.md"
+  },
+  {
+    "title": "AI 工具（function calling）",
+    "url": "https://doc.iocoder.cn/ai/tool/",
+    "path": "pages/ai/tool/index.md"
+  },
+  {
+    "title": "联网搜索",
+    "url": "https://doc.iocoder.cn/ai/web-search/",
+    "path": "pages/ai/web-search/index.md"
+  },
+  {
+    "title": "AI 工作流",
+    "url": "https://doc.iocoder.cn/ai/workflow/",
+    "path": "pages/ai/workflow/index.md"
+  },
+  {
+    "title": "AI 写作助手",
+    "url": "https://doc.iocoder.cn/ai/write/",
+    "path": "pages/ai/write/index.md"
+  },
+  {
+    "title": "【模型接入】讯飞星火",
+    "url": "https://doc.iocoder.cn/ai/xinghuo/",
+    "path": "pages/ai/xinghuo/index.md"
+  },
+  {
+    "title": "【模型接入】文心一言",
+    "url": "https://doc.iocoder.cn/ai/yiyan/",
+    "path": "pages/ai/yiyan/index.md"
+  },
+  {
+    "title": "接口文档",
+    "url": "https://doc.iocoder.cn/api-doc/",
+    "path": "pages/api-doc/index.md"
+  },
+  {
+    "title": "HTTP 接口加解密",
+    "url": "https://doc.iocoder.cn/api-encrypt/",
+    "path": "pages/api-encrypt/index.md"
+  },
+  {
+    "title": "地区 & IP 库",
+    "url": "https://doc.iocoder.cn/area-and-ip/",
+    "path": "pages/area-and-ip/index.md"
+  },
+  {
+    "title": "异步任务",
+    "url": "https://doc.iocoder.cn/async-task/",
+    "path": "pages/async-task/index.md"
+  },
+  {
+    "title": "工作流演示",
+    "url": "https://doc.iocoder.cn/bpm-preview/",
+    "path": "pages/bpm-preview/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/bpm/",
+    "path": "pages/bpm/index.md"
+  },
+  {
+    "title": "选择审批人、发起人自选",
+    "url": "https://doc.iocoder.cn/bpm/assignee/",
+    "path": "pages/bpm/assignee/index.md"
+  },
+  {
+    "title": "工作流（达梦适配）",
+    "url": "https://doc.iocoder.cn/bpm/dameng/",
+    "path": "pages/bpm/dameng/index.md"
+  },
+  {
+    "title": "流程表达式",
+    "url": "https://doc.iocoder.cn/bpm/expression/",
+    "path": "pages/bpm/expression/index.md"
+  },
+  {
+    "title": "执行监听器、任务监听器",
+    "url": "https://doc.iocoder.cn/bpm/listener/",
+    "path": "pages/bpm/listener/index.md"
+  },
+  {
+    "title": "流程审批通知",
+    "url": "https://doc.iocoder.cn/bpm/message/",
+    "path": "pages/bpm/message/index.md"
+  },
+  {
+    "title": "流程设计器（BPMN）",
+    "url": "https://doc.iocoder.cn/bpm/model-designer-bpmn/",
+    "path": "pages/bpm/model-designer-bpmn/index.md"
+  },
+  {
+    "title": "流程设计器（钉钉、飞书）",
+    "url": "https://doc.iocoder.cn/bpm/model-designer-dingding/",
+    "path": "pages/bpm/model-designer-dingding/index.md"
+  },
+  {
+    "title": "会签、或签、依次审批",
+    "url": "https://doc.iocoder.cn/bpm/multi-instance/",
+    "path": "pages/bpm/multi-instance/index.md"
+  },
+  {
+    "title": "流程发起、取消、重新发起",
+    "url": "https://doc.iocoder.cn/bpm/process-instance/",
+    "path": "pages/bpm/process-instance/index.md"
+  },
+  {
+    "title": "审批加签、减签",
+    "url": "https://doc.iocoder.cn/bpm/sign/",
+    "path": "pages/bpm/sign/index.md"
+  },
+  {
+    "title": "审批转办、委派、抄送",
+    "url": "https://doc.iocoder.cn/bpm/task-delegation-and-cc/",
+    "path": "pages/bpm/task-delegation-and-cc/index.md"
+  },
+  {
+    "title": "审批通过、不通过、驳回",
+    "url": "https://doc.iocoder.cn/bpm/task-todo-done/",
+    "path": "pages/bpm/task-todo-done/index.md"
+  },
+  {
+    "title": "审批接入（流程表单）",
+    "url": "https://doc.iocoder.cn/bpm/use-bpm-form/",
+    "path": "pages/bpm/use-bpm-form/index.md"
+  },
+  {
+    "title": "审批接入（业务表单）",
+    "url": "https://doc.iocoder.cn/bpm/use-business-form/",
+    "path": "pages/bpm/use-business-form/index.md"
+  },
+  {
+    "title": "验证码",
+    "url": "https://doc.iocoder.cn/captcha/",
+    "path": "pages/captcha/index.md"
+  },
+  {
+    "title": "【v2.0.0】2024-01-26",
+    "url": "https://doc.iocoder.cn/changelog/2.0.0/",
+    "path": "pages/changelog/2.0.0/index.md"
+  },
+  {
+    "title": "【v2.0.1】2024-03-01",
+    "url": "https://doc.iocoder.cn/changelog/2.0.1/",
+    "path": "pages/changelog/2.0.1/index.md"
+  },
+  {
+    "title": "【v2.1.0】2024-05-05",
+    "url": "https://doc.iocoder.cn/changelog/2.1.0/",
+    "path": "pages/changelog/2.1.0/index.md"
+  },
+  {
+    "title": "【v2.2.0】2024-08-02",
+    "url": "https://doc.iocoder.cn/changelog/2.2.0/",
+    "path": "pages/changelog/2.2.0/index.md"
+  },
+  {
+    "title": "【v2.3.0】2024-10-07",
+    "url": "https://doc.iocoder.cn/changelog/2.3.0/",
+    "path": "pages/changelog/2.3.0/index.md"
+  },
+  {
+    "title": "【v2.4.0】2024-12-31",
+    "url": "https://doc.iocoder.cn/changelog/2.4.0/",
+    "path": "pages/changelog/2.4.0/index.md"
+  },
+  {
+    "title": "【v2.4.1】2025-02-09",
+    "url": "https://doc.iocoder.cn/changelog/2.4.1/",
+    "path": "pages/changelog/2.4.1/index.md"
+  },
+  {
+    "title": "【v2.4.2】2025-04-12",
+    "url": "https://doc.iocoder.cn/changelog/2.4.2/",
+    "path": "pages/changelog/2.4.2/index.md"
+  },
+  {
+    "title": "【v2.5.0】2025-05-13",
+    "url": "https://doc.iocoder.cn/changelog/2.5.0/",
+    "path": "pages/changelog/2.5.0/index.md"
+  },
+  {
+    "title": "【v2-6-0】2025-06-07",
+    "url": "https://doc.iocoder.cn/changelog/2.6.0/",
+    "path": "pages/changelog/2.6.0/index.md"
+  },
+  {
+    "title": "【v2-6-1】2025-07-19",
+    "url": "https://doc.iocoder.cn/changelog/2.6.1/",
+    "path": "pages/changelog/2.6.1/index.md"
+  },
+  {
+    "title": "【v2025-08】",
+    "url": "https://doc.iocoder.cn/changelog/2025-08/",
+    "path": "pages/changelog/2025-08/index.md"
+  },
+  {
+    "title": "【v2025-09】",
+    "url": "https://doc.iocoder.cn/changelog/2025-09/",
+    "path": "pages/changelog/2025-09/index.md"
+  },
+  {
+    "title": "【v2025-10】",
+    "url": "https://doc.iocoder.cn/changelog/2025-10/",
+    "path": "pages/changelog/2025-10/index.md"
+  },
+  {
+    "title": "【v2025-11】",
+    "url": "https://doc.iocoder.cn/changelog/2025-11/",
+    "path": "pages/changelog/2025-11/index.md"
+  },
+  {
+    "title": "【v2025-12】",
+    "url": "https://doc.iocoder.cn/changelog/2025-12/",
+    "path": "pages/changelog/2025-12/index.md"
+  },
+  {
+    "title": "【v2026-01】",
+    "url": "https://doc.iocoder.cn/changelog/2026-01/",
+    "path": "pages/changelog/2026-01/index.md"
+  },
+  {
+    "title": "【v2026-02】开发中",
+    "url": "https://doc.iocoder.cn/changelog/2026-02/",
+    "path": "pages/changelog/2026-02/index.md"
+  },
+  {
+    "title": "配置管理",
+    "url": "https://doc.iocoder.cn/config-center/",
+    "path": "pages/config-center/index.md"
+  },
+  {
+    "title": "CRM 演示",
+    "url": "https://doc.iocoder.cn/crm-preview/",
+    "path": "pages/crm-preview/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/crm/build/",
+    "path": "pages/crm/build/index.md"
+  },
+  {
+    "title": "【商机】商机管理、商机状态",
+    "url": "https://doc.iocoder.cn/crm/business/",
+    "path": "pages/crm/business/index.md"
+  },
+  {
+    "title": "【线索】线索管理",
+    "url": "https://doc.iocoder.cn/crm/clue/",
+    "path": "pages/crm/clue/index.md"
+  },
+  {
+    "title": "【合同】合同管理、合同提醒",
+    "url": "https://doc.iocoder.cn/crm/contract/",
+    "path": "pages/crm/contract/index.md"
+  },
+  {
+    "title": "【客户】客户管理、公海客户",
+    "url": "https://doc.iocoder.cn/crm/customer/",
+    "path": "pages/crm/customer/index.md"
+  },
+  {
+    "title": "【通用】跟进记录、待办事项",
+    "url": "https://doc.iocoder.cn/crm/follow-up/",
+    "path": "pages/crm/follow-up/index.md"
+  },
+  {
+    "title": "【通用】数据权限",
+    "url": "https://doc.iocoder.cn/crm/permission/",
+    "path": "pages/crm/permission/index.md"
+  },
+  {
+    "title": "【产品】产品管理、产品分类",
+    "url": "https://doc.iocoder.cn/crm/product/",
+    "path": "pages/crm/product/index.md"
+  },
+  {
+    "title": "【回款】回款管理、回款计划",
+    "url": "https://doc.iocoder.cn/crm/receivable/",
+    "path": "pages/crm/receivable/index.md"
+  },
+  {
+    "title": "数据权限",
+    "url": "https://doc.iocoder.cn/data-permission/",
+    "path": "pages/data-permission/index.md"
+  },
+  {
+    "title": "数据库文档",
+    "url": "https://doc.iocoder.cn/db-doc/",
+    "path": "pages/db-doc/index.md"
+  },
+  {
+    "title": "删除功能（以租户为例）",
+    "url": "https://doc.iocoder.cn/delete-code/",
+    "path": "pages/delete-code/index.md"
+  },
+  {
+    "title": "1Panel 部署",
+    "url": "https://doc.iocoder.cn/deployment-1panel/",
+    "path": "pages/deployment-1panel/index.md"
+  },
+  {
+    "title": "宝塔部署",
+    "url": "https://doc.iocoder.cn/deployment-baota/",
+    "path": "pages/deployment-baota/index.md"
+  },
+  {
+    "title": "Docker 部署",
+    "url": "https://doc.iocoder.cn/deployment-docker/",
+    "path": "pages/deployment-docker/index.md"
+  },
+  {
+    "title": "Jenkins 部署",
+    "url": "https://doc.iocoder.cn/deployment-jenkins/",
+    "path": "pages/deployment-jenkins/index.md"
+  },
+  {
+    "title": "Linux 部署",
+    "url": "https://doc.iocoder.cn/deployment-linux/",
+    "path": "pages/deployment-linux/index.md"
+  },
+  {
+    "title": "Tomcat 部署",
+    "url": "https://doc.iocoder.cn/deployment-war/",
+    "path": "pages/deployment-war/index.md"
+  },
+  {
+    "title": "数据脱敏、字段权限",
+    "url": "https://doc.iocoder.cn/desensitize/",
+    "path": "pages/desensitize/index.md"
+  },
+  {
+    "title": "开发环境",
+    "url": "https://doc.iocoder.cn/dev-env/",
+    "path": "pages/dev-env/index.md"
+  },
+  {
+    "title": "代码热加载",
+    "url": "https://doc.iocoder.cn/dev-hot-swap/",
+    "path": "pages/dev-hot-swap/index.md"
+  },
+  {
+    "title": "分布式锁",
+    "url": "https://doc.iocoder.cn/distributed-lock/",
+    "path": "pages/distributed-lock/index.md"
+  },
+  {
+    "title": "多数据源（读写分离）、事务",
+    "url": "https://doc.iocoder.cn/dynamic-datasource/",
+    "path": "pages/dynamic-datasource/index.md"
+  },
+  {
+    "title": "ERP 演示",
+    "url": "https://doc.iocoder.cn/erp-preview/",
+    "path": "pages/erp-preview/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/erp/build/",
+    "path": "pages/erp/build/index.md"
+  },
+  {
+    "title": "【产品】产品信息、分类、单位",
+    "url": "https://doc.iocoder.cn/erp/product/",
+    "path": "pages/erp/product/index.md"
+  },
+  {
+    "title": "【采购】采购订单、入库、退货",
+    "url": "https://doc.iocoder.cn/erp/purchase/",
+    "path": "pages/erp/purchase/index.md"
+  },
+  {
+    "title": "【销售】销售订单、出库、退货",
+    "url": "https://doc.iocoder.cn/erp/sale/",
+    "path": "pages/erp/sale/index.md"
+  },
+  {
+    "title": "【库存】其它入库、其它出库",
+    "url": "https://doc.iocoder.cn/erp/stock-in-out/",
+    "path": "pages/erp/stock-in-out/index.md"
+  },
+  {
+    "title": "【库存】库存调拨、库存盘点",
+    "url": "https://doc.iocoder.cn/erp/stock-move-check/",
+    "path": "pages/erp/stock-move-check/index.md"
+  },
+  {
+    "title": "【库存】产品库存、库存明细",
+    "url": "https://doc.iocoder.cn/erp/stock/",
+    "path": "pages/erp/stock/index.md"
+  },
+  {
+    "title": "Excel 导入导出",
+    "url": "https://doc.iocoder.cn/excel-import-and-export/",
+    "path": "pages/excel-import-and-export/index.md"
+  },
+  {
+    "title": "异常处理（错误码）",
+    "url": "https://doc.iocoder.cn/exception/",
+    "path": "pages/exception/index.md"
+  },
+  {
+    "title": "功能列表",
+    "url": "https://doc.iocoder.cn/feature/",
+    "path": "pages/feature/index.md"
+  },
+  {
+    "title": "文件存储（上传下载）",
+    "url": "https://doc.iocoder.cn/file/",
+    "path": "pages/file/index.md"
+  },
+  {
+    "title": "HTTP 接口签名（防篡改）",
+    "url": "https://doc.iocoder.cn/http-sign/",
+    "path": "pages/http-sign/index.md"
+  },
+  {
+    "title": "HTTPS 证书",
+    "url": "https://doc.iocoder.cn/https/",
+    "path": "pages/https/index.md"
+  },
+  {
+    "title": "幂等性（防重复提交）",
+    "url": "https://doc.iocoder.cn/idempotent/",
+    "path": "pages/idempotent/index.md"
+  },
+  {
+    "title": "面试题、简历模版、简历优化",
+    "url": "https://doc.iocoder.cn/interview/",
+    "path": "pages/interview/index.md"
+  },
+  {
+    "title": "简介",
+    "url": "https://doc.iocoder.cn/intro/",
+    "path": "pages/intro/index.md"
+  },
+  {
+    "title": "告警配置",
+    "url": "https://doc.iocoder.cn/iot/alert-config/",
+    "path": "pages/iot/alert-config/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/iot/build/",
+    "path": "pages/iot/build/index.md"
+  },
+  {
+    "title": "数据流转",
+    "url": "https://doc.iocoder.cn/iot/data-rule/",
+    "path": "pages/iot/data-rule/index.md"
+  },
+  {
+    "title": "设备动态注册",
+    "url": "https://doc.iocoder.cn/iot/device-register/",
+    "path": "pages/iot/device-register/index.md"
+  },
+  {
+    "title": "设备管理",
+    "url": "https://doc.iocoder.cn/iot/device/",
+    "path": "pages/iot/device/index.md"
+  },
+  {
+    "title": "设备网关与子设备",
+    "url": "https://doc.iocoder.cn/iot/gateway-sub-device/",
+    "path": "pages/iot/gateway-sub-device/index.md"
+  },
+  {
+    "title": "OTA 固件升级",
+    "url": "https://doc.iocoder.cn/iot/ota/",
+    "path": "pages/iot/ota/index.md"
+  },
+  {
+    "title": "产品管理",
+    "url": "https://doc.iocoder.cn/iot/product/",
+    "path": "pages/iot/product/index.md"
+  },
+  {
+    "title": "设备接入（CoAP 协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-coap/",
+    "path": "pages/iot/protocol-coap/index.md"
+  },
+  {
+    "title": "设备接入（自定义协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-custom/",
+    "path": "pages/iot/protocol-custom/index.md"
+  },
+  {
+    "title": "设备接入（EMQX 协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-emqx/",
+    "path": "pages/iot/protocol-emqx/index.md"
+  },
+  {
+    "title": "设备接入（HTTP 协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-http/",
+    "path": "pages/iot/protocol-http/index.md"
+  },
+  {
+    "title": "设备接入（Modbus Client 模式）",
+    "url": "https://doc.iocoder.cn/iot/protocol-modbus-client/",
+    "path": "pages/iot/protocol-modbus-client/index.md"
+  },
+  {
+    "title": "设备接入（Modbus Server 模式）",
+    "url": "https://doc.iocoder.cn/iot/protocol-modbus-server/",
+    "path": "pages/iot/protocol-modbus-server/index.md"
+  },
+  {
+    "title": "设备接入（MQTT 协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-mqtt/",
+    "path": "pages/iot/protocol-mqtt/index.md"
+  },
+  {
+    "title": "设备接入（概述）",
+    "url": "https://doc.iocoder.cn/iot/protocol-overview/",
+    "path": "pages/iot/protocol-overview/index.md"
+  },
+  {
+    "title": "设备接入（TCP 协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-tcp/",
+    "path": "pages/iot/protocol-tcp/index.md"
+  },
+  {
+    "title": "设备接入（UDP 协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-udp/",
+    "path": "pages/iot/protocol-udp/index.md"
+  },
+  {
+    "title": "设备接入（WebSocket 协议）",
+    "url": "https://doc.iocoder.cn/iot/protocol-websocket/",
+    "path": "pages/iot/protocol-websocket/index.md"
+  },
+  {
+    "title": "场景联动",
+    "url": "https://doc.iocoder.cn/iot/scene-rule/",
+    "path": "pages/iot/scene-rule/index.md"
+  },
+  {
+    "title": "物模型配置",
+    "url": "https://doc.iocoder.cn/iot/thing-model/",
+    "path": "pages/iot/thing-model/index.md"
+  },
+  {
+    "title": "定时任务",
+    "url": "https://doc.iocoder.cn/job/",
+    "path": "pages/job/index.md"
+  },
+  {
+    "title": "本地缓存",
+    "url": "https://doc.iocoder.cn/local-cache/",
+    "path": "pages/local-cache/index.md"
+  },
+  {
+    "title": "邮件配置",
+    "url": "https://doc.iocoder.cn/mail/",
+    "path": "pages/mail/index.md"
+  },
+  {
+    "title": "商城演示",
+    "url": "https://doc.iocoder.cn/mall-preview/",
+    "path": "pages/mall-preview/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/mall/build/",
+    "path": "pages/mall/build/index.md"
+  },
+  {
+    "title": "商城装修",
+    "url": "https://doc.iocoder.cn/mall/diy/",
+    "path": "pages/mall/diy/index.md"
+  },
+  {
+    "title": "在线客服",
+    "url": "https://doc.iocoder.cn/mall/kefu/",
+    "path": "pages/mall/kefu/index.md"
+  },
+  {
+    "title": "【营销】积分商城",
+    "url": "https://doc.iocoder.cn/mall/point-activity/",
+    "path": "pages/mall/point-activity/index.md"
+  },
+  {
+    "title": "【商品】商品分类",
+    "url": "https://doc.iocoder.cn/mall/product-category/",
+    "path": "pages/mall/product-category/index.md"
+  },
+  {
+    "title": "【商品】商品评价",
+    "url": "https://doc.iocoder.cn/mall/product-comment/",
+    "path": "pages/mall/product-comment/index.md"
+  },
+  {
+    "title": "【商品】商品属性",
+    "url": "https://doc.iocoder.cn/mall/product-property/",
+    "path": "pages/mall/product-property/index.md"
+  },
+  {
+    "title": "【商品】商品 SPU 与 SKU",
+    "url": "https://doc.iocoder.cn/mall/product-spu-sku/",
+    "path": "pages/mall/product-spu-sku/index.md"
+  },
+  {
+    "title": "【营销】砍价活动",
+    "url": "https://doc.iocoder.cn/mall/promotion-bargain/",
+    "path": "pages/mall/promotion-bargain/index.md"
+  },
+  {
+    "title": "【营销】拼团活动",
+    "url": "https://doc.iocoder.cn/mall/promotion-combination/",
+    "path": "pages/mall/promotion-combination/index.md"
+  },
+  {
+    "title": "【营销】内容管理",
+    "url": "https://doc.iocoder.cn/mall/promotion-content/",
+    "path": "pages/mall/promotion-content/index.md"
+  },
+  {
+    "title": "【营销】优惠劵",
+    "url": "https://doc.iocoder.cn/mall/promotion-coupon/",
+    "path": "pages/mall/promotion-coupon/index.md"
+  },
+  {
+    "title": "【营销】限时折扣",
+    "url": "https://doc.iocoder.cn/mall/promotion-discount/",
+    "path": "pages/mall/promotion-discount/index.md"
+  },
+  {
+    "title": "【营销】满减送活动",
+    "url": "https://doc.iocoder.cn/mall/promotion-record/",
+    "path": "pages/mall/promotion-record/index.md"
+  },
+  {
+    "title": "【营销】秒杀活动",
+    "url": "https://doc.iocoder.cn/mall/promotion-seckill/",
+    "path": "pages/mall/promotion-seckill/index.md"
+  },
+  {
+    "title": "【统计】会员、商品、交易统计",
+    "url": "https://doc.iocoder.cn/mall/statistics/",
+    "path": "pages/mall/statistics/index.md"
+  },
+  {
+    "title": "【交易】售后退款",
+    "url": "https://doc.iocoder.cn/mall/trade-aftersale/",
+    "path": "pages/mall/trade-aftersale/index.md"
+  },
+  {
+    "title": "【交易】分销返佣",
+    "url": "https://doc.iocoder.cn/mall/trade-brokerage/",
+    "path": "pages/mall/trade-brokerage/index.md"
+  },
+  {
+    "title": "【交易】购物车",
+    "url": "https://doc.iocoder.cn/mall/trade-cart/",
+    "path": "pages/mall/trade-cart/index.md"
+  },
+  {
+    "title": "【交易】快递发货",
+    "url": "https://doc.iocoder.cn/mall/trade-delivery-express/",
+    "path": "pages/mall/trade-delivery-express/index.md"
+  },
+  {
+    "title": "【交易】门店自提",
+    "url": "https://doc.iocoder.cn/mall/trade-delivery-pickup/",
+    "path": "pages/mall/trade-delivery-pickup/index.md"
+  },
+  {
+    "title": "【交易】交易订单",
+    "url": "https://doc.iocoder.cn/mall/trade-order/",
+    "path": "pages/mall/trade-order/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/member/build/",
+    "path": "pages/member/build/index.md"
+  },
+  {
+    "title": "会员等级、积分、签到",
+    "url": "https://doc.iocoder.cn/member/level/",
+    "path": "pages/member/level/index.md"
+  },
+  {
+    "title": "会员用户、标签、分组",
+    "url": "https://doc.iocoder.cn/member/user/",
+    "path": "pages/member/user/index.md"
+  },
+  {
+    "title": "微信小程序登录",
+    "url": "https://doc.iocoder.cn/member/weixin-lite-login/",
+    "path": "pages/member/weixin-lite-login/index.md"
+  },
+  {
+    "title": "微信小程序码",
+    "url": "https://doc.iocoder.cn/member/weixin-lite-qrcode/",
+    "path": "pages/member/weixin-lite-qrcode/index.md"
+  },
+  {
+    "title": "微信小程序订阅消息",
+    "url": "https://doc.iocoder.cn/member/weixin-lite-subscribe-message/",
+    "path": "pages/member/weixin-lite-subscribe-message/index.md"
+  },
+  {
+    "title": "微信公众号登录",
+    "url": "https://doc.iocoder.cn/member/weixin-mp-login/",
+    "path": "pages/member/weixin-mp-login/index.md"
+  },
+  {
+    "title": "消息队列（内存）",
+    "url": "https://doc.iocoder.cn/message-queue/event/",
+    "path": "pages/message-queue/event/index.md"
+  },
+  {
+    "title": "消息队列（Kafka）",
+    "url": "https://doc.iocoder.cn/message-queue/kafka/",
+    "path": "pages/message-queue/kafka/index.md"
+  },
+  {
+    "title": "消息队列（RabbitMQ）",
+    "url": "https://doc.iocoder.cn/message-queue/rabbitmq/",
+    "path": "pages/message-queue/rabbitmq/index.md"
+  },
+  {
+    "title": "消息队列（Redis）",
+    "url": "https://doc.iocoder.cn/message-queue/redis/",
+    "path": "pages/message-queue/redis/index.md"
+  },
+  {
+    "title": "消息队列（RocketMQ）",
+    "url": "https://doc.iocoder.cn/message-queue/rocketmq/",
+    "path": "pages/message-queue/rocketmq/index.md"
+  },
+  {
+    "title": "迁移模块（适合新项目）",
+    "url": "https://doc.iocoder.cn/migrate-module/",
+    "path": "pages/migrate-module/index.md"
+  },
+  {
+    "title": "新建模块",
+    "url": "https://doc.iocoder.cn/module-new/",
+    "path": "pages/module-new/index.md"
+  },
+  {
+    "title": "公众号接入",
+    "url": "https://doc.iocoder.cn/mp/account/",
+    "path": "pages/mp/account/index.md"
+  },
+  {
+    "title": "公众号图文",
+    "url": "https://doc.iocoder.cn/mp/article/",
+    "path": "pages/mp/article/index.md"
+  },
+  {
+    "title": "自动回复",
+    "url": "https://doc.iocoder.cn/mp/auto-reply/",
+    "path": "pages/mp/auto-reply/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/mp/build/",
+    "path": "pages/mp/build/index.md"
+  },
+  {
+    "title": "公众号素材",
+    "url": "https://doc.iocoder.cn/mp/material/",
+    "path": "pages/mp/material/index.md"
+  },
+  {
+    "title": "公众号菜单",
+    "url": "https://doc.iocoder.cn/mp/menu/",
+    "path": "pages/mp/menu/index.md"
+  },
+  {
+    "title": "模版消息",
+    "url": "https://doc.iocoder.cn/mp/message-template/",
+    "path": "pages/mp/message-template/index.md"
+  },
+  {
+    "title": "公众号消息",
+    "url": "https://doc.iocoder.cn/mp/message/",
+    "path": "pages/mp/message/index.md"
+  },
+  {
+    "title": "公众号统计",
+    "url": "https://doc.iocoder.cn/mp/statistics/",
+    "path": "pages/mp/statistics/index.md"
+  },
+  {
+    "title": "公众号标签",
+    "url": "https://doc.iocoder.cn/mp/tag/",
+    "path": "pages/mp/tag/index.md"
+  },
+  {
+    "title": "公众号粉丝",
+    "url": "https://doc.iocoder.cn/mp/user/",
+    "path": "pages/mp/user/index.md"
+  },
+  {
+    "title": "MyBatis 联表&分页查询",
+    "url": "https://doc.iocoder.cn/mybatis-pro/",
+    "path": "pages/mybatis-pro/index.md"
+  },
+  {
+    "title": "MyBatis 数据库",
+    "url": "https://doc.iocoder.cn/mybatis/",
+    "path": "pages/mybatis/index.md"
+  },
+  {
+    "title": "内网穿透",
+    "url": "https://doc.iocoder.cn/natapp/",
+    "path": "pages/natapp/index.md"
+  },
+  {
+    "title": "代码生成【单表】（新增功能）",
+    "url": "https://doc.iocoder.cn/new-feature/",
+    "path": "pages/new-feature/index.md"
+  },
+  {
+    "title": "3. 代码运行",
+    "url": "https://doc.iocoder.cn/new-feature/admin-uniapp/",
+    "path": "pages/new-feature/admin-uniapp/index.md"
+  },
+  {
+    "title": "3. 代码运行",
+    "url": "https://doc.iocoder.cn/new-feature/master-sub/",
+    "path": "pages/new-feature/master-sub/index.md"
+  },
+  {
+    "title": "3. 代码运行",
+    "url": "https://doc.iocoder.cn/new-feature/tree/",
+    "path": "pages/new-feature/tree/index.md"
+  },
+  {
+    "title": "站内信配置",
+    "url": "https://doc.iocoder.cn/notify/",
+    "path": "pages/notify/index.md"
+  },
+  {
+    "title": "OAuth 2.0（SSO 单点登录)",
+    "url": "https://doc.iocoder.cn/oauth2/",
+    "path": "pages/oauth2/index.md"
+  },
+  {
+    "title": "分页实现",
+    "url": "https://doc.iocoder.cn/page-feature/",
+    "path": "pages/page-feature/index.md"
+  },
+  {
+    "title": "支付宝支付接入",
+    "url": "https://doc.iocoder.cn/pay/alipay-pay-demo/",
+    "path": "pages/pay/alipay-pay-demo/index.md"
+  },
+  {
+    "title": "支付宝转账接入",
+    "url": "https://doc.iocoder.cn/pay/alipay-transfer-demo/",
+    "path": "pages/pay/alipay-transfer-demo/index.md"
+  },
+  {
+    "title": "功能开启",
+    "url": "https://doc.iocoder.cn/pay/build/",
+    "path": "pages/pay/build/index.md"
+  },
+  {
+    "title": "模拟支付、退款",
+    "url": "https://doc.iocoder.cn/pay/mock/",
+    "path": "pages/pay/mock/index.md"
+  },
+  {
+    "title": "支付宝、微信退款接入",
+    "url": "https://doc.iocoder.cn/pay/refund-demo/",
+    "path": "pages/pay/refund-demo/index.md"
+  },
+  {
+    "title": "钱包充值、支付、退款",
+    "url": "https://doc.iocoder.cn/pay/wallet/",
+    "path": "pages/pay/wallet/index.md"
+  },
+  {
+    "title": "微信小程序支付接入",
+    "url": "https://doc.iocoder.cn/pay/wx-lite-pay-demo/",
+    "path": "pages/pay/wx-lite-pay-demo/index.md"
+  },
+  {
+    "title": "微信公众号支付接入",
+    "url": "https://doc.iocoder.cn/pay/wx-pub-pay-demo/",
+    "path": "pages/pay/wx-pub-pay-demo/index.md"
+  },
+  {
+    "title": "微信转账接入",
+    "url": "https://doc.iocoder.cn/pay/wx-transfer-demo/",
+    "path": "pages/pay/wx-transfer-demo/index.md"
+  },
+  {
+    "title": "项目结构",
+    "url": "https://doc.iocoder.cn/project-intro/",
+    "path": "pages/project-intro/index.md"
+  },
+  {
+    "title": "一键改包",
+    "url": "https://doc.iocoder.cn/project-rename/",
+    "path": "pages/project-rename/index.md"
+  },
+  {
+    "title": "快速启动（前端项目）",
+    "url": "https://doc.iocoder.cn/quick-start-front/",
+    "path": "pages/quick-start-front/index.md"
+  },
+  {
+    "title": "快速启动（后端项目）",
+    "url": "https://doc.iocoder.cn/quick-start/",
+    "path": "pages/quick-start/index.md"
+  },
+  {
+    "title": "交流群",
+    "url": "https://doc.iocoder.cn/qun/",
+    "path": "pages/qun/index.md"
+  },
+  {
+    "title": "请求限流（RateLimiter）",
+    "url": "https://doc.iocoder.cn/rate-limiter/",
+    "path": "pages/rate-limiter/index.md"
+  },
+  {
+    "title": "Redis 缓存",
+    "url": "https://doc.iocoder.cn/redis-cache/",
+    "path": "pages/redis-cache/index.md"
+  },
+  {
+    "title": "如何去除 Redis 缓存",
+    "url": "https://doc.iocoder.cn/remove-redis/",
+    "path": "pages/remove-redis/index.md"
+  },
+  {
+    "title": "报表设计器",
+    "url": "https://doc.iocoder.cn/report/",
+    "path": "pages/report/index.md"
+  },
+  {
+    "title": "大屏设计器",
+    "url": "https://doc.iocoder.cn/report/screen/",
+    "path": "pages/report/screen/index.md"
+  },
+  {
+    "title": "功能权限",
+    "url": "https://doc.iocoder.cn/resource-permission/",
+    "path": "pages/resource-permission/index.md"
+  },
+  {
+    "title": "SaaS 多租户【字段隔离】",
+    "url": "https://doc.iocoder.cn/saas-tenant/",
+    "path": "pages/saas-tenant/index.md"
+  },
+  {
+    "title": "SaaS 多租户【数据库隔离】",
+    "url": "https://doc.iocoder.cn/saas-tenant/dynamic/",
+    "path": "pages/saas-tenant/dynamic/index.md"
+  },
+  {
+    "title": "【财务】采购付款、销售收款",
+    "url": "https://doc.iocoder.cn/sale/finance-payment-receipt/",
+    "path": "pages/sale/finance-payment-receipt/index.md"
+  },
+  {
+    "title": "敏感词",
+    "url": "https://doc.iocoder.cn/sensitive-word/",
+    "path": "pages/sensitive-word/index.md"
+  },
+  {
+    "title": "服务监控",
+    "url": "https://doc.iocoder.cn/server-monitor/",
+    "path": "pages/server-monitor/index.md"
+  },
+  {
+    "title": "限流熔断",
+    "url": "https://doc.iocoder.cn/server-protection/",
+    "path": "pages/server-protection/index.md"
+  },
+  {
+    "title": "短信配置",
+    "url": "https://doc.iocoder.cn/sms/",
+    "path": "pages/sms/index.md"
+  },
+  {
+    "title": "三方登录",
+    "url": "https://doc.iocoder.cn/social-user/",
+    "path": "pages/social-user/index.md"
+  },
+  {
+    "title": "表结构变更（版本升级）",
+    "url": "https://doc.iocoder.cn/sql-update/",
+    "path": "pages/sql-update/index.md"
+  },
+  {
+    "title": "操作日志、访问日志、异常日志",
+    "url": "https://doc.iocoder.cn/system-log/",
+    "path": "pages/system-log/index.md"
+  },
+  {
+    "title": "技术选型",
+    "url": "https://doc.iocoder.cn/technology/",
+    "path": "pages/technology/index.md"
+  },
+  {
+    "title": "单元测试",
+    "url": "https://doc.iocoder.cn/unit-test/",
+    "path": "pages/unit-test/index.md"
+  },
+  {
+    "title": "用户体系",
+    "url": "https://doc.iocoder.cn/user-center/",
+    "path": "pages/user-center/index.md"
+  },
+  {
+    "title": "工具类 Util",
+    "url": "https://doc.iocoder.cn/util/",
+    "path": "pages/util/index.md"
+  },
+  {
+    "title": "参数校验、时间传参",
+    "url": "https://doc.iocoder.cn/validator/",
+    "path": "pages/validator/index.md"
+  },
+  {
+    "title": "系统组件",
+    "url": "https://doc.iocoder.cn/vben5/components/",
+    "path": "pages/vben5/components/index.md"
+  },
+  {
+    "title": "配置读取",
+    "url": "https://doc.iocoder.cn/vben5/config-center/",
+    "path": "pages/vben5/config-center/index.md"
+  },
+  {
+    "title": "IDE 调试",
+    "url": "https://doc.iocoder.cn/vben5/debugger/",
+    "path": "pages/vben5/debugger/index.md"
+  },
+  {
+    "title": "开发规范",
+    "url": "https://doc.iocoder.cn/vben5/dev-spec/",
+    "path": "pages/vben5/dev-spec/index.md"
+  },
+  {
+    "title": "字典数据",
+    "url": "https://doc.iocoder.cn/vben5/dict/",
+    "path": "pages/vben5/dict/index.md"
+  },
+  {
+    "title": "代码格式化",
+    "url": "https://doc.iocoder.cn/vben5/format/",
+    "path": "pages/vben5/format/index.md"
+  },
+  {
+    "title": "图标、主题、国际化",
+    "url": "https://doc.iocoder.cn/vben5/icon-theme/",
+    "path": "pages/vben5/icon-theme/index.md"
+  },
+  {
+    "title": "菜单路由",
+    "url": "https://doc.iocoder.cn/vben5/route/",
+    "path": "pages/vben5/route/index.md"
+  },
+  {
+    "title": "通用方法",
+    "url": "https://doc.iocoder.cn/vben5/util/",
+    "path": "pages/vben5/util/index.md"
+  },
+  {
+    "title": "视频教程",
+    "url": "https://doc.iocoder.cn/video/",
+    "path": "pages/video/index.md"
+  },
+  {
+    "title": "VO 对象转换、数据翻译",
+    "url": "https://doc.iocoder.cn/vo/",
+    "path": "pages/vo/index.md"
+  },
+  {
+    "title": "系统组件",
+    "url": "https://doc.iocoder.cn/vue2/components/",
+    "path": "pages/vue2/components/index.md"
+  },
+  {
+    "title": "配置读取",
+    "url": "https://doc.iocoder.cn/vue2/config-center/",
+    "path": "pages/vue2/config-center/index.md"
+  },
+  {
+    "title": "开发规范",
+    "url": "https://doc.iocoder.cn/vue2/dev-spec/",
+    "path": "pages/vue2/dev-spec/index.md"
+  },
+  {
+    "title": "字典数据",
+    "url": "https://doc.iocoder.cn/vue2/dict/",
+    "path": "pages/vue2/dict/index.md"
+  },
+  {
+    "title": "Icon 图标",
+    "url": "https://doc.iocoder.cn/vue2/icon/",
+    "path": "pages/vue2/icon/index.md"
+  },
+  {
+    "title": "菜单路由",
+    "url": "https://doc.iocoder.cn/vue2/route/",
+    "path": "pages/vue2/route/index.md"
+  },
+  {
+    "title": "通用方法",
+    "url": "https://doc.iocoder.cn/vue2/util/",
+    "path": "pages/vue2/util/index.md"
+  },
+  {
+    "title": "系统组件",
+    "url": "https://doc.iocoder.cn/vue3/components/",
+    "path": "pages/vue3/components/index.md"
+  },
+  {
+    "title": "配置读取",
+    "url": "https://doc.iocoder.cn/vue3/config-center/",
+    "path": "pages/vue3/config-center/index.md"
+  },
+  {
+    "title": "CRUD 组件",
+    "url": "https://doc.iocoder.cn/vue3/crud-schema/",
+    "path": "pages/vue3/crud-schema/index.md"
+  },
+  {
+    "title": "IDE 调试",
+    "url": "https://doc.iocoder.cn/vue3/debugger/",
+    "path": "pages/vue3/debugger/index.md"
+  },
+  {
+    "title": "开发规范",
+    "url": "https://doc.iocoder.cn/vue3/dev-spec/",
+    "path": "pages/vue3/dev-spec/index.md"
+  },
+  {
+    "title": "字典数据",
+    "url": "https://doc.iocoder.cn/vue3/dict/",
+    "path": "pages/vue3/dict/index.md"
+  },
+  {
+    "title": "代码格式化",
+    "url": "https://doc.iocoder.cn/vue3/format/",
+    "path": "pages/vue3/format/index.md"
+  },
+  {
+    "title": "国际化",
+    "url": "https://doc.iocoder.cn/vue3/i18n/",
+    "path": "pages/vue3/i18n/index.md"
+  },
+  {
+    "title": "Icon 图标",
+    "url": "https://doc.iocoder.cn/vue3/icon/",
+    "path": "pages/vue3/icon/index.md"
+  },
+  {
+    "title": "菜单路由",
+    "url": "https://doc.iocoder.cn/vue3/route/",
+    "path": "pages/vue3/route/index.md"
+  },
+  {
+    "title": "通用方法",
+    "url": "https://doc.iocoder.cn/vue3/util/",
+    "path": "pages/vue3/util/index.md"
+  },
+  {
+    "title": "项目外包",
+    "url": "https://doc.iocoder.cn/waibao/",
+    "path": "pages/waibao/index.md"
+  },
+  {
+    "title": "Webhook（钉钉、飞书、企微）",
+    "url": "https://doc.iocoder.cn/webhook/",
+    "path": "pages/webhook/index.md"
+  },
+  {
+    "title": "WebSocket 实时通信",
+    "url": "https://doc.iocoder.cn/websocket/",
+    "path": "pages/websocket/index.md"
+  },
+  {
+    "title": "国产信创数据库（DM 达梦、大金、OpenGauss）",
+    "url": "https://doc.iocoder.cn/xinchuang-db/",
+    "path": "pages/xinchuang-db/index.md"
+  }
+]
