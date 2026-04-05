@@ -235,6 +235,81 @@ const remainingRouter: AppRouteRecordRaw[] = [
     }
   },
   {
+    path: '/court-case',
+    component: Layout,
+    name: 'CourtCase',
+    meta: {
+      hidden: true
+    },
+    children: [
+      {
+        path: 'case',
+        component: () => import('@/views/courtCase/case/index.vue'),
+        name: 'CourtCaseList',
+        meta: {
+          hidden: true,
+          canTo: true,
+          noTagsView: false,
+          icon: 'ep:files',
+          title: '案件管理',
+          activeMenu: '/court-case/case'
+        }
+      },
+      {
+        path: 'model',
+        component: () => import('@/views/courtCase/model/index.vue'),
+        name: 'CourtCaseModelConfig',
+        meta: {
+          hidden: true,
+          canTo: true,
+          noTagsView: false,
+          icon: 'ep:setting',
+          title: '案件模型',
+          activeMenu: '/court-case/model'
+        }
+      },
+      {
+        path: 'workbench',
+        component: () => import('@/views/courtCase/workbench/index.vue'),
+        name: 'CourtCaseWorkbenchEntry',
+        meta: {
+          hidden: true,
+          canTo: true,
+          noTagsView: false,
+          icon: 'ep:monitor',
+          title: '工作台入口',
+          activeMenu: '/court-case/workbench'
+        }
+      },
+      {
+        path: 'service-workbench',
+        component: () => import('@/views/courtCase/serviceWorkbench/index.vue'),
+        name: 'CourtCaseServiceWorkbench',
+        meta: {
+          hidden: true,
+          canTo: true,
+          noTagsView: false,
+          icon: 'ep:user',
+          title: '客服工作台',
+          activeMenu: '/court-case/service-workbench'
+        }
+      },
+      {
+        path: 'legal-workbench',
+        component: () => import('@/views/courtCase/legalWorkbench/index.vue'),
+        name: 'CourtCaseLegalWorkbench',
+        meta: {
+          hidden: true,
+          canTo: true,
+          noTagsView: false,
+          icon: 'ep:briefcase',
+          title: '法务工作台',
+          activeMenu: '/court-case/legal-workbench'
+        }
+      }
+    ]
+  },
+  {
     path: '/bpm',
     component: Layout,
     name: 'bpm',
