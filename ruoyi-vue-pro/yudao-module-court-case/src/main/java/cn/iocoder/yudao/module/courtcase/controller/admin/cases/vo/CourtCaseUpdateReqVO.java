@@ -8,9 +8,13 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Schema(description = "管理后台 - 案件创建 Request VO")
+@Schema(description = "管理后台 - 案件更新 Request VO")
 @Data
-public class CourtCaseCreateReqVO {
+public class CourtCaseUpdateReqVO {
+
+    @Schema(description = "案件编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+    @NotNull(message = "案件编号不能为空")
+    private Long id;
 
     @Schema(description = "案件编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "CASE-20260403-001")
     @NotBlank(message = "案件编号不能为空")
@@ -105,9 +109,10 @@ public class CourtCaseCreateReqVO {
     @Schema(description = "收货地址")
     private String shippingAddress;
 
-    @Schema(description = "当前负责人编号", example = "145")
-    private Long currentAssigneeId;
+    @Schema(description = "客户状态", requiredMode = Schema.RequiredMode.REQUIRED, example = "PENDING_REPAY")
+    @NotBlank(message = "客户状态不能为空")
+    private String customerStatus;
 
-    @Schema(description = "当前阶段扩展字段 JSON", example = "{\"deviceModel\":\"iPhone 15\"}")
+    @Schema(description = "扩展字段 JSON", example = "{\"deviceModel\":\"iPhone 15\"}")
     private String extJson;
 }

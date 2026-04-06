@@ -37,6 +37,14 @@ public class CourtCaseController {
         return success(courtCaseService.createCase(getLoginUserId(), createReqVO));
     }
 
+    @PostMapping("/update")
+    @PreAuthorize("@ss.hasPermission('court-case:case:update')")
+    @Operation(summary = "更新案件")
+    public CommonResult<Boolean> updateCase(@Valid @RequestBody CourtCaseUpdateReqVO updateReqVO) {
+        courtCaseService.updateCase(getLoginUserId(), updateReqVO);
+        return success(true);
+    }
+
     @GetMapping("/get")
     @PreAuthorize("@ss.hasPermission('court-case:case:query')")
     @Operation(summary = "获得案件")

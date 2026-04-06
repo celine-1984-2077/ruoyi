@@ -26,13 +26,59 @@ public class CourtCaseDO extends BaseDO {
 
     private String orderNo;
 
+    private String contractNo;
+
+    private String companyName;
+
+    private String platformName;
+
+    private String supplierName;
+
+    private String serviceOwnerName;
+
+    private String expressNo;
+
+    private String productName;
+
+    private String packageInfo;
+
+    private String leaseMode;
+
     private String customerName;
+
+    private String idCardNo;
 
     private String mobile;
 
+    private String gender;
+
+    private Integer age;
+
     private BigDecimal amount;
 
+    private BigDecimal totalRentAmount;
+
+    private BigDecimal paidDepositAmount;
+
+    private BigDecimal remainingDepositAmount;
+
+    private BigDecimal installmentAmount;
+
+    private Integer installmentCount;
+
+    private Integer overdueDays;
+
+    private Integer remainingDays;
+
+    private BigDecimal remainingUnpaidAmount;
+
+    private String overdueType;
+
     private LocalDate repaymentDueDate;
+
+    private String domicileAddress;
+
+    private String shippingAddress;
 
     private String currentStage;
 

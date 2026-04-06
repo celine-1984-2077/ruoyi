@@ -6,6 +6,7 @@ import cn.iocoder.yudao.framework.common.util.object.BeanUtils;
 import cn.iocoder.yudao.module.courtcase.controller.admin.cases.vo.CourtCaseAdvanceReqVO;
 import cn.iocoder.yudao.module.courtcase.controller.admin.cases.vo.CourtCaseCreateReqVO;
 import cn.iocoder.yudao.module.courtcase.controller.admin.cases.vo.CourtCasePageReqVO;
+import cn.iocoder.yudao.module.courtcase.controller.admin.cases.vo.CourtCaseUpdateReqVO;
 import cn.iocoder.yudao.module.courtcase.dal.dataobject.cases.CourtCaseDO;
 import cn.iocoder.yudao.module.courtcase.dal.dataobject.cases.CourtCaseFlowLogDO;
 import cn.iocoder.yudao.module.courtcase.dal.mysql.cases.CourtCaseFlowLogMapper;
@@ -61,6 +62,47 @@ public class CourtCaseServiceImpl implements CourtCaseService {
                 CourtCaseStageEnum.IMPORT.getStage(), CourtCaseStageEnum.ASSIGN.getStage(),
                 userId, "案件建档并进入分单阶段");
         return courtCase.getId();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateCase(Long userId, @Valid CourtCaseUpdateReqVO updateReqVO) {
+        CourtCaseDO courtCase = validateCaseExists(updateReqVO.getId());
+        if (!accessControlHelper.isSuperAdmin(userId)) {
+            throw exception(CASE_PERMISSION_DENIED);
+        }
+        courtCase.setCaseNo(updateReqVO.getCaseNo())
+                .setOrderNo(updateReqVO.getOrderNo())
+                .setContractNo(updateReqVO.getContractNo())
+                .setCompanyName(updateReqVO.getCompanyName())
+                .setPlatformName(updateReqVO.getPlatformName())
+                .setSupplierName(updateReqVO.getSupplierName())
+                .setServiceOwnerName(updateReqVO.getServiceOwnerName())
+                .setExpressNo(updateReqVO.getExpressNo())
+                .setProductName(updateReqVO.getProductName())
+                .setPackageInfo(updateReqVO.getPackageInfo())
+                .setLeaseMode(updateReqVO.getLeaseMode())
+                .setCustomerName(updateReqVO.getCustomerName())
+                .setIdCardNo(updateReqVO.getIdCardNo())
+                .setMobile(updateReqVO.getMobile())
+                .setGender(updateReqVO.getGender())
+                .setAge(updateReqVO.getAge())
+                .setAmount(updateReqVO.getAmount())
+                .setTotalRentAmount(updateReqVO.getTotalRentAmount())
+                .setPaidDepositAmount(updateReqVO.getPaidDepositAmount())
+                .setRemainingDepositAmount(updateReqVO.getRemainingDepositAmount())
+                .setInstallmentAmount(updateReqVO.getInstallmentAmount())
+                .setInstallmentCount(updateReqVO.getInstallmentCount())
+                .setOverdueDays(updateReqVO.getOverdueDays())
+                .setRemainingDays(updateReqVO.getRemainingDays())
+                .setRemainingUnpaidAmount(updateReqVO.getRemainingUnpaidAmount())
+                .setOverdueType(updateReqVO.getOverdueType())
+                .setRepaymentDueDate(updateReqVO.getRepaymentDueDate())
+                .setDomicileAddress(updateReqVO.getDomicileAddress())
+                .setShippingAddress(updateReqVO.getShippingAddress())
+                .setCustomerStatus(updateReqVO.getCustomerStatus())
+                .setExtJson(courtCaseModelService.normalizeAndValidateExtJson(updateReqVO.getExtJson()));
+        courtCaseMapper.updateById(courtCase);
     }
 
     @Override

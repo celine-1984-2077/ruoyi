@@ -47,24 +47,112 @@
   </ContentWrap>
 
   <ContentWrap>
-    <el-table v-loading="loading" :data="list">
-      <el-table-column label="案件编号" prop="caseNo" min-width="160" />
-      <el-table-column label="订单号" prop="orderNo" min-width="180" />
-      <el-table-column label="客户姓名" prop="customerName" min-width="120" />
-      <el-table-column label="联系电话" prop="mobile" min-width="140" />
-      <el-table-column label="涉案金额" prop="amount" min-width="120" />
-      <el-table-column label="应还款日期" prop="repaymentDueDate" min-width="140" />
-      <el-table-column label="客户状态" min-width="140">
+    <el-table
+      v-loading="loading"
+      :data="list"
+      border
+      :row-class-name="getRowClassName"
+      @header-dragend="handleHeaderDragend"
+    >
+      <el-table-column
+        label="案件编号"
+        prop="caseNo"
+        column-key="caseNo"
+        min-width="160"
+        :width="getColumnWidth('caseNo', 160)"
+      >
         <template #default="{ row }">
-          {{ customerStatusLabelMap[row.customerStatus] || '-' }}
+          <el-input v-if="isEditingRow(row)" v-model="editingForm.caseNo" />
+          <div v-else class="editable-cell" @click="startInlineEdit(row)">{{ row.caseNo }}</div>
         </template>
       </el-table-column>
-      <el-table-column label="下次提醒" min-width="180">
+      <el-table-column
+        label="订单号"
+        prop="orderNo"
+        column-key="orderNo"
+        min-width="180"
+        :width="getColumnWidth('orderNo', 180)"
+      >
+        <template #default="{ row }">
+          <el-input v-if="isEditingRow(row)" v-model="editingForm.orderNo" />
+          <div v-else class="editable-cell" @click="startInlineEdit(row)">{{ row.orderNo }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="客户姓名"
+        prop="customerName"
+        column-key="customerName"
+        min-width="120"
+        :width="getColumnWidth('customerName', 120)"
+      >
+        <template #default="{ row }">
+          <el-input v-if="isEditingRow(row)" v-model="editingForm.customerName" />
+          <div v-else class="editable-cell" @click="startInlineEdit(row)">{{ row.customerName }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="联系电话"
+        prop="mobile"
+        column-key="mobile"
+        min-width="140"
+        :width="getColumnWidth('mobile', 140)"
+      >
+        <template #default="{ row }">
+          <el-input v-if="isEditingRow(row)" v-model="editingForm.mobile" />
+          <div v-else class="editable-cell" @click="startInlineEdit(row)">{{ row.mobile }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="涉案金额"
+        prop="amount"
+        column-key="amount"
+        min-width="120"
+        :width="getColumnWidth('amount', 120)"
+      >
+        <template #default="{ row }">
+          <el-input-number v-if="isEditingRow(row)" v-model="editingForm.amount" :min="0" :precision="2" class="!w-full" />
+          <div v-else class="editable-cell" @click="startInlineEdit(row)">{{ row.amount }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="应还款日期"
+        prop="repaymentDueDate"
+        column-key="repaymentDueDate"
+        min-width="140"
+        :width="getColumnWidth('repaymentDueDate', 140)"
+      >
+        <template #default="{ row }">
+          <el-date-picker
+            v-if="isEditingRow(row)"
+            v-model="editingForm.repaymentDueDate"
+            type="date"
+            value-format="YYYY-MM-DD"
+            class="!w-full"
+          />
+          <div v-else class="editable-cell" @click="startInlineEdit(row)">{{ formatLocalDate(row.repaymentDueDate) || '-' }}</div>
+        </template>
+      </el-table-column>
+      <el-table-column label="客户状态" column-key="customerStatus" min-width="140" :width="getColumnWidth('customerStatus', 140)">
+        <template #default="{ row }">
+          <el-select v-if="isEditingRow(row)" v-model="editingForm.customerStatus" class="!w-full">
+            <el-option
+              v-for="item in customerStatusOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+          <div v-else class="editable-cell" @click="startInlineEdit(row)">
+            {{ customerStatusLabelMap[row.customerStatus] || '-' }}
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column label="下次提醒" column-key="nextRemindTime" min-width="180" :width="getColumnWidth('nextRemindTime', 180)">
         <template #default="{ row }">
           {{ row.nextRemindTime || '-' }}
         </template>
       </el-table-column>
-      <el-table-column label="最近跟进" min-width="180">
+      <el-table-column label="最近跟进" column-key="lastFollowUpTime" min-width="180" :width="getColumnWidth('lastFollowUpTime', 180)">
         <template #default="{ row }">
           {{ row.lastFollowUpTime || '-' }}
         </template>
@@ -73,49 +161,99 @@
         v-for="field in modelFields"
         :key="field.fieldCode"
         :label="field.fieldLabel"
+        :column-key="`dynamic:${field.fieldCode}`"
         min-width="150"
+        :width="getColumnWidth(`dynamic:${field.fieldCode}`, 150)"
         show-overflow-tooltip
       >
         <template #default="{ row }">
-          <template v-if="field.fieldType === 'MULTI_SELECT'">
-            {{ getDynamicFieldDisplay(row, field).join('、') || '-' }}
+          <template v-if="isEditingRow(row)">
+            <el-input v-if="field.fieldType === 'TEXT'" v-model="editingExtForm[field.fieldCode]" />
+            <el-date-picker
+              v-else-if="field.fieldType === 'DATE'"
+              v-model="editingExtForm[field.fieldCode]"
+              type="date"
+              value-format="YYYY-MM-DD"
+              class="!w-full"
+            />
+            <el-input-number
+              v-else-if="field.fieldType === 'NUMBER'"
+              v-model="editingExtForm[field.fieldCode]"
+              :precision="2"
+              class="!w-full"
+            />
+            <el-select v-else-if="field.fieldType === 'SINGLE_SELECT'" v-model="editingExtForm[field.fieldCode]" class="!w-full">
+              <el-option v-for="option in field.options" :key="option.value" :label="option.label" :value="option.value" />
+            </el-select>
+            <el-select
+              v-else
+              v-model="editingExtForm[field.fieldCode]"
+              multiple
+              collapse-tags
+              collapse-tags-tooltip
+              class="!w-full"
+            >
+              <el-option v-for="option in field.options" :key="option.value" :label="option.label" :value="option.value" />
+            </el-select>
+          </template>
+          <template v-else-if="field.fieldType === 'MULTI_SELECT'">
+            <div class="editable-cell" @click="startInlineEdit(row)">
+              {{ getDynamicFieldDisplay(row, field).join('、') || '-' }}
+            </div>
           </template>
           <template v-else>
-            {{ getDynamicFieldDisplay(row, field) || '-' }}
+            <div class="editable-cell" @click="startInlineEdit(row)">
+              {{ getDynamicFieldDisplay(row, field) || '-' }}
+            </div>
           </template>
         </template>
       </el-table-column>
-      <el-table-column label="当前阶段" min-width="120">
+      <el-table-column label="当前阶段" column-key="currentStage" min-width="120" :width="getColumnWidth('currentStage', 120)">
         <template #default="{ row }">
           <el-tag :type="stageTagTypeMap[row.currentStage] || 'info'">
             {{ getStageLabel(row.currentStage) }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="状态" min-width="100">
+      <el-table-column label="状态" column-key="status" min-width="100" :width="getColumnWidth('status', 100)">
         <template #default="{ row }">
           <el-tag :type="statusTagTypeMap[row.status] || 'info'">
             {{ getStatusLabel(row.status) }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="建档时间" prop="createTime" min-width="180" :formatter="dateFormatter" />
-      <el-table-column label="操作" width="220" fixed="right">
+      <el-table-column
+        label="建档时间"
+        prop="createTime"
+        column-key="createTime"
+        min-width="180"
+        :width="getColumnWidth('createTime', 180)"
+        :formatter="dateFormatter"
+      />
+      <el-table-column label="操作" column-key="actions" :width="getColumnWidth('actions', 220)" min-width="220" fixed="right">
         <template #default="{ row }">
-          <el-button link type="primary" @click="openDetailDrawer(row)">查看详情</el-button>
-          <el-button link type="primary" @click="openLogDialog(row)">流转记录</el-button>
-          <el-button
-            v-if="actionOptionsMap[row.currentStage]?.length"
-            v-hasPermi="['court-case:case:advance']"
-            link
-            type="primary"
-            @click="openAdvanceDialog(row)"
-          >
-            推进
-          </el-button>
-          <el-button v-hasPermi="['court-case:case:delete']" link type="danger" @click="handleDelete(row)">
-            删除
-          </el-button>
+          <template v-if="isEditingRow(row)">
+            <el-button v-hasPermi="['court-case:case:update']" link type="primary" :loading="editingSaving" @click="saveInlineEdit">
+              保存
+            </el-button>
+            <el-button link @click="cancelInlineEdit">取消</el-button>
+          </template>
+          <template v-else>
+            <el-button link type="primary" @click="openDetailDrawer(row)">查看详情</el-button>
+            <el-button link type="primary" @click="openLogDialog(row)">流转记录</el-button>
+            <el-button
+              v-if="actionOptionsMap[row.currentStage]?.length"
+              v-hasPermi="['court-case:case:advance']"
+              link
+              type="primary"
+              @click="openAdvanceDialog(row)"
+            >
+              推进
+            </el-button>
+            <el-button v-hasPermi="['court-case:case:delete']" link type="danger" @click="handleDelete(row)">
+              删除
+            </el-button>
+          </template>
         </template>
       </el-table-column>
     </el-table>
@@ -129,165 +267,89 @@
 
   <el-drawer v-model="detailDrawerVisible" title="案件详情总览" size="78%">
     <template v-if="detailCase">
-      <div v-loading="detailLoading">
-        <el-row :gutter="12" class="mb-16px">
-          <el-col :span="6">
-            <div class="detail-stat-card">
-              <div class="detail-stat-label">案件编号</div>
-              <div class="detail-stat-value">{{ detailCase.caseNo || '-' }}</div>
-              <div class="detail-stat-desc">{{ detailCase.orderNo || '-' }}</div>
+      <div v-loading="detailLoading" class="detail-sheet-compact">
+        <div class="case-sheet">
+          <div class="case-basic-panel">
+            <div class="case-basic-header">基本信息</div>
+            <div
+              v-for="(group, groupIndex) in detailBasicInfoRows"
+              :key="`detail-group-${groupIndex}`"
+              class="case-basic-grid"
+            >
+              <template v-for="item in group" :key="item.label">
+                <div class="case-basic-label">{{ item.label }}</div>
+                <div class="case-basic-value" :class="{ 'span-3': item.span === 3 }">{{ item.value }}</div>
+              </template>
             </div>
-          </el-col>
-          <el-col :span="6">
-            <div class="detail-stat-card">
-              <div class="detail-stat-label">客户 / 状态</div>
-              <div class="detail-stat-value">{{ detailCase.customerName || '-' }}</div>
-              <div class="detail-stat-desc">
-                {{ customerStatusLabelMap[detailCase.customerStatus || ''] || '-' }}
+          </div>
+
+          <div class="case-note-board">
+            <div class="case-note-header">
+              <div>所属客服备注</div>
+              <div>法务备注</div>
+            </div>
+            <div class="case-note-grid">
+              <div class="case-note-label">下次提醒</div>
+              <div class="case-note-value">{{ formatDateTime(detailCase.nextRemindTime) }}</div>
+              <div class="case-note-label">立案状态</div>
+              <div class="case-note-value">{{ getFilingStatusLabel(detailFiling.status) }}</div>
+
+              <div class="case-note-label">提醒内容</div>
+              <div class="case-note-value">{{ formatDisplayValue(detailCase.nextRemindContent) }}</div>
+              <div class="case-note-label">立案法院</div>
+              <div class="case-note-value">{{ formatDisplayValue(detailFiling.courtName) }}</div>
+
+              <div class="case-note-label">最新客服备注</div>
+              <div class="case-note-value tall">{{ latestServiceNote }}</div>
+              <div class="case-note-label">最新法务备注</div>
+              <div class="case-note-value tall">{{ latestLegalNote }}</div>
+            </div>
+
+            <div class="case-note-record-title">留存记录</div>
+            <div class="case-note-record-grid case-note-record-header">
+              <div>客服记录</div>
+              <div>法务记录</div>
+            </div>
+            <div
+              v-for="(row, index) in noteHistoryRows"
+              :key="`note-history-${index}`"
+              class="case-note-record-grid"
+            >
+              <div>{{ row.service }}</div>
+              <div>{{ row.legal }}</div>
+            </div>
+          </div>
+
+          <div class="case-contact-board">
+            <div class="case-contact-header">联系人信息</div>
+            <div class="case-contact-grid">
+              <div v-for="contact in detailContacts" :key="contact.label" class="case-contact-card">
+                <div class="case-contact-name">{{ contact.label }}</div>
+                <div class="case-contact-value">{{ contact.value }}</div>
               </div>
             </div>
-          </el-col>
-          <el-col :span="6">
-            <div class="detail-stat-card">
-              <div class="detail-stat-label">当前阶段</div>
-              <div class="detail-stat-value">{{ getStageLabel(detailCase.currentStage) }}</div>
-              <div class="detail-stat-desc">{{ getStatusLabel(detailCase.status) }}</div>
-            </div>
-          </el-col>
-          <el-col :span="6">
-            <div class="detail-stat-card">
-              <div class="detail-stat-label">法务概览</div>
-              <div class="detail-stat-value">
-                证据 {{ detailEvidenceList.length }} / 诉状 {{ detailPetitionList.length }}
+          </div>
+
+          <div class="case-basic-panel">
+            <div class="case-basic-header">动态字段</div>
+            <template v-if="detailDynamicFieldRows.length">
+              <div
+                v-for="(row, rowIndex) in detailDynamicFieldRows"
+                :key="`dynamic-row-${rowIndex}`"
+                class="case-basic-grid"
+              >
+                <template v-for="item in row" :key="item.label">
+                  <div class="case-basic-label">{{ item.label }}</div>
+                  <div class="case-basic-value">{{ item.value }}</div>
+                </template>
               </div>
-              <div class="detail-stat-desc">{{ getFilingStatusLabel(detailFiling.status) }}</div>
-            </div>
-          </el-col>
-        </el-row>
+            </template>
+            <div v-else class="case-empty-block">当前没有动态字段</div>
+          </div>
 
-        <el-tabs v-model="detailActiveTab">
-          <el-tab-pane label="基本信息" name="basic">
-            <el-descriptions :column="2" border>
-              <el-descriptions-item label="案件编号">{{ detailCase.caseNo || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="订单号">{{ detailCase.orderNo || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="客户姓名">{{ detailCase.customerName || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="联系电话">{{ detailCase.mobile || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="涉案金额">{{ detailCase.amount ?? '-' }}</el-descriptions-item>
-              <el-descriptions-item label="应还款日期">{{ detailCase.repaymentDueDate || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="客户状态">
-                {{ customerStatusLabelMap[detailCase.customerStatus || ''] || '-' }}
-              </el-descriptions-item>
-              <el-descriptions-item label="当前阶段">
-                {{ getStageLabel(detailCase.currentStage) }}
-              </el-descriptions-item>
-              <el-descriptions-item label="案件状态">{{ getStatusLabel(detailCase.status) }}</el-descriptions-item>
-              <el-descriptions-item label="建档时间">{{ detailCase.createTime || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="下次提醒">{{ detailCase.nextRemindTime || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="最近跟进">{{ detailCase.lastFollowUpTime || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="移交法务时间">{{ detailCase.transferTime || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="撤回截止">{{ detailCase.transferRecallDeadline || '-' }}</el-descriptions-item>
-            </el-descriptions>
-
-            <el-divider content-position="left">动态字段</el-divider>
-            <el-descriptions v-if="modelFields.length" :column="2" border>
-              <el-descriptions-item
-                v-for="field in modelFields"
-                :key="field.fieldCode"
-                :label="field.fieldLabel"
-              >
-                <template v-if="field.fieldType === 'MULTI_SELECT'">
-                  {{ getDetailDynamicFieldDisplay(field).join('、') || '-' }}
-                </template>
-                <template v-else>
-                  {{ getDetailDynamicFieldDisplay(field) || '-' }}
-                </template>
-              </el-descriptions-item>
-            </el-descriptions>
-            <el-empty v-else description="当前没有动态字段" />
-          </el-tab-pane>
-
-          <el-tab-pane label="客服信息" name="service">
-            <el-descriptions :column="2" border class="mb-16px">
-              <el-descriptions-item label="下次提醒时间">{{ detailCase.nextRemindTime || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="提醒内容">{{ detailCase.nextRemindContent || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="是否已还款">{{ detailCase.repaid ? '已还款' : '未还款' }}</el-descriptions-item>
-              <el-descriptions-item label="还款时间">{{ detailCase.repaidTime || '-' }}</el-descriptions-item>
-            </el-descriptions>
-
-            <div class="section-title">跟进记录</div>
-            <el-timeline v-if="detailFollowUpList.length">
-              <el-timeline-item
-                v-for="item in detailFollowUpList"
-                :key="item.id"
-                :timestamp="item.createTime"
-                placement="top"
-              >
-                <div class="font-600 mb-4px">{{ item.operatorName || `用户${item.operatorId}` }}</div>
-                <div class="mb-8px whitespace-pre-wrap">{{ item.content }}</div>
-                <div v-if="splitAttachmentUrls(item.attachmentUrls).length" class="flex flex-wrap gap-8px">
-                  <el-link
-                    v-for="url in splitAttachmentUrls(item.attachmentUrls)"
-                    :key="url"
-                    :href="url"
-                    target="_blank"
-                    type="primary"
-                  >
-                    查看附件
-                  </el-link>
-                </div>
-              </el-timeline-item>
-            </el-timeline>
-            <el-empty v-else description="暂无跟进记录" />
-          </el-tab-pane>
-
-          <el-tab-pane label="法务信息" name="legal">
-            <el-descriptions :column="2" border class="mb-16px">
-              <el-descriptions-item label="立案法院">{{ detailFiling.courtName || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="立案编号">{{ detailFiling.filingNo || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="提交时间">{{ detailFiling.submitTime || '-' }}</el-descriptions-item>
-              <el-descriptions-item label="立案状态">{{ getFilingStatusLabel(detailFiling.status) }}</el-descriptions-item>
-              <el-descriptions-item label="驳回原因" :span="2">
-                {{ detailFiling.rejectReason || '-' }}
-              </el-descriptions-item>
-            </el-descriptions>
-
-            <div class="section-title">证据材料</div>
-            <el-table :data="detailEvidenceList" class="mb-20px">
-              <el-table-column label="分类" min-width="140">
-                <template #default="{ row }">
-                  {{ evidenceCategoryLabelMap[row.category] || row.category }}
-                </template>
-              </el-table-column>
-              <el-table-column label="文件名" prop="fileName" min-width="220" show-overflow-tooltip />
-              <el-table-column label="上传时间" prop="createTime" min-width="180" />
-              <el-table-column label="操作" width="120">
-                <template #default="{ row }">
-                  <el-link :href="row.fileUrl" target="_blank" type="primary">预览</el-link>
-                </template>
-              </el-table-column>
-            </el-table>
-
-            <div class="section-title">诉状记录</div>
-            <el-table :data="detailPetitionList">
-              <el-table-column label="模板" prop="templateName" min-width="180" />
-              <el-table-column label="版本" prop="versionNo" min-width="100" />
-              <el-table-column label="文件名" prop="fileName" min-width="220" show-overflow-tooltip />
-              <el-table-column label="生成时间" prop="createTime" min-width="180" />
-              <el-table-column label="状态" min-width="120">
-                <template #default="{ row }">
-                  {{ row.overwritten ? '人工覆盖' : '系统生成' }}
-                </template>
-              </el-table-column>
-              <el-table-column label="操作" width="120">
-                <template #default="{ row }">
-                  <el-link :href="row.fileUrl" target="_blank" type="primary">查看诉状</el-link>
-                </template>
-              </el-table-column>
-            </el-table>
-          </el-tab-pane>
-
-          <el-tab-pane label="流转记录" name="flow">
-            <el-table :data="detailLogList">
+          <div class="case-flow-board">
+            <div class="case-flow-header">流转记录</div>
+            <el-table :data="detailLogList" border>
               <el-table-column label="动作" prop="action" min-width="140" />
               <el-table-column label="原阶段" min-width="120">
                 <template #default="{ row }">
@@ -303,8 +365,8 @@
               <el-table-column label="备注" prop="remark" min-width="220" show-overflow-tooltip />
               <el-table-column label="时间" prop="createTime" min-width="180" :formatter="dateFormatter" />
             </el-table>
-          </el-tab-pane>
-        </el-tabs>
+          </div>
+        </div>
       </div>
     </template>
   </el-drawer>
@@ -472,6 +534,8 @@ defineOptions({ name: 'CourtCaseList' })
 const router = useRouter()
 const message = useMessage()
 
+const CASE_EDIT_ROW_CLASS = 'case-editing-row'
+
 const loading = ref(false)
 const total = ref(0)
 const list = ref<CourtCaseApi.CourtCaseVO[]>([])
@@ -525,7 +589,6 @@ const logLoading = ref(false)
 const logList = ref<any[]>([])
 const detailDrawerVisible = ref(false)
 const detailLoading = ref(false)
-const detailActiveTab = ref('basic')
 const detailCase = ref<CourtCaseApi.CourtCaseVO>()
 const detailCaseExt = ref<Record<string, any>>({})
 const detailFollowUpList = ref<ServiceWorkbenchApi.FollowUpVO[]>([])
@@ -540,6 +603,21 @@ const detailFiling = reactive<LegalApi.FilingVO>({
 const modelFields = ref<CourtCaseModelApi.CourtCaseModelFieldVO[]>([])
 const createExtForm = reactive<Record<string, any>>({})
 const caseExtCache = reactive<Record<number, Record<string, any>>>({})
+const CASE_TABLE_WIDTH_STORAGE_KEY = 'court-case:list-column-widths'
+const columnWidthMap = ref<Record<string, number>>({})
+const editingCaseId = ref<number>()
+const editingSaving = ref(false)
+const editingForm = reactive({
+  id: undefined as number | undefined,
+  caseNo: '',
+  orderNo: '',
+  customerName: '',
+  mobile: '',
+  amount: 0,
+  repaymentDueDate: '',
+  customerStatus: 'PENDING_REPAY'
+})
+const editingExtForm = reactive<Record<string, any>>({})
 
 const stageOptions = Object.entries(stageLabelMap)
   .filter(([value]) => value !== 'IMPORT')
@@ -562,6 +640,13 @@ const customerStatusLabelMap: Record<string, string> = {
   REPAID: '已还款'
 }
 
+const customerStatusOptions = Object.entries(customerStatusLabelMap).map(([value, label]) => ({
+  value,
+  label
+}))
+
+const legalStageSet = new Set(['LEGAL', 'LITIGATION', 'ARCHIVED'])
+
 const getFilingStatusLabel = (status?: string) => {
   const filingStatusMap: Record<string, string> = {
     PENDING: '待立案',
@@ -570,6 +655,216 @@ const getFilingStatusLabel = (status?: string) => {
     CLOSED: '结案'
   }
   return filingStatusMap[status || ''] || '-'
+}
+
+const formatLocalDate = (value: unknown) => {
+  if (!value) {
+    return ''
+  }
+  if (typeof value === 'string') {
+    return value
+  }
+  if (Array.isArray(value) && value.length >= 3) {
+    const [year, month, day] = value
+    const normalizedMonth = String(month).padStart(2, '0')
+    const normalizedDay = String(day).padStart(2, '0')
+    return `${year}-${normalizedMonth}-${normalizedDay}`
+  }
+  return String(value)
+}
+
+const formatDateTime = (value: unknown) => {
+  if (!value) {
+    return '-'
+  }
+  if (typeof value === 'string') {
+    return value
+  }
+  if (Array.isArray(value) && value.length >= 3) {
+    const [year, month, day, hour = 0, minute = 0, second = 0] = value
+    return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')} ${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}:${String(second).padStart(2, '0')}`
+  }
+  return String(value)
+}
+
+const formatDisplayValue = (value: unknown) => {
+  if (value === undefined || value === null || value === '') {
+    return '-'
+  }
+  if (Array.isArray(value)) {
+    return value.join('、') || '-'
+  }
+  return String(value)
+}
+
+const isLegalStageCase = (stage?: string) => legalStageSet.has(stage || '')
+
+const detailBasicInfoRows = computed(() => {
+  if (!detailCase.value) {
+    return []
+  }
+  const c = detailCase.value
+  return [
+    [
+      { label: '案件编号', value: formatDisplayValue(c.caseNo) },
+      { label: '合同编号', value: formatDisplayValue(c.contractNo) },
+      { label: '公司', value: formatDisplayValue(c.companyName) },
+      { label: '平台', value: formatDisplayValue(c.platformName) }
+    ],
+    [
+      { label: '订单号', value: formatDisplayValue(c.orderNo) },
+      { label: '快递单号', value: formatDisplayValue(c.expressNo) },
+      { label: '商品名称', value: formatDisplayValue(c.productName) },
+      { label: '套餐信息', value: formatDisplayValue(c.packageInfo) }
+    ],
+    [
+      { label: '客户姓名', value: formatDisplayValue(c.customerName) },
+      { label: '联系电话', value: formatDisplayValue(c.mobile) },
+      { label: '身份证号', value: formatDisplayValue(c.idCardNo) },
+      { label: '性别 / 年龄', value: `${formatDisplayValue(c.gender)} / ${formatDisplayValue(c.age)}` }
+    ],
+    [
+      { label: '供应商', value: formatDisplayValue(c.supplierName) },
+      { label: '所属客服', value: formatDisplayValue(c.serviceOwnerName) },
+      { label: '租赁方式', value: formatDisplayValue(c.leaseMode) },
+      { label: '应还款日期', value: formatDisplayValue(formatLocalDate(c.repaymentDueDate)) }
+    ],
+    [
+      { label: '涉案金额', value: formatDisplayValue(c.amount) },
+      { label: '总租金', value: formatDisplayValue(c.totalRentAmount) },
+      { label: '已付押金', value: formatDisplayValue(c.paidDepositAmount) },
+      { label: '剩余押金', value: formatDisplayValue(c.remainingDepositAmount) }
+    ],
+    [
+      { label: '期付金额', value: formatDisplayValue(c.installmentAmount) },
+      { label: '期付次数', value: formatDisplayValue(c.installmentCount) },
+      { label: '剩余未还金额', value: formatDisplayValue(c.remainingUnpaidAmount) },
+      { label: '逾期类型', value: formatDisplayValue(c.overdueType) }
+    ],
+    [
+      { label: '逾期天数', value: formatDisplayValue(c.overdueDays) },
+      { label: '剩余天数', value: formatDisplayValue(c.remainingDays) },
+      { label: '客户状态', value: customerStatusLabelMap[c.customerStatus || ''] || '-' },
+      { label: '当前阶段', value: getStageLabel(c.currentStage) }
+    ],
+    [
+      { label: '案件状态', value: getStatusLabel(c.status) },
+      { label: '建档时间', value: formatDateTime(c.createTime) },
+      { label: '下次提醒', value: formatDateTime(c.nextRemindTime) },
+      { label: '最近跟进', value: formatDateTime(c.lastFollowUpTime) }
+    ],
+    [
+      { label: '移交法务时间', value: formatDateTime(c.transferTime) },
+      { label: '撤回截止', value: formatDateTime(c.transferRecallDeadline) },
+      { label: '户籍地址', value: formatDisplayValue(c.domicileAddress), span: 3 },
+      { label: '收货地址', value: formatDisplayValue(c.shippingAddress), span: 3 }
+    ]
+  ]
+})
+
+const latestServiceFollowUp = computed(() => detailFollowUpList.value[0])
+
+const latestServiceNote = computed(() => {
+  const item = latestServiceFollowUp.value
+  if (!item) {
+    return '暂无客服跟进记录'
+  }
+  return `${formatDateTime(item.createTime)} ${item.operatorName || `用户${item.operatorId}`}\n${item.content || '-'}`
+})
+
+const latestLegalNote = computed(() => {
+  const parts = [
+    detailFiling.rejectReason ? `驳回原因：${detailFiling.rejectReason}` : '',
+    detailFiling.courtName ? `法院：${detailFiling.courtName}` : '',
+    detailFiling.filingNo ? `案号：${detailFiling.filingNo}` : '',
+    detailPetitionList.value.length ? `诉状：${detailPetitionList.value.length} 份` : '',
+    detailEvidenceList.value.length ? `证据：${detailEvidenceList.value.length} 份` : ''
+  ].filter(Boolean)
+  return parts.join('；') || '暂无法务备注'
+})
+
+const noteHistoryRows = computed(() => {
+  const serviceRows = detailFollowUpList.value.slice(0, 5).map((item) => {
+    return `${formatDateTime(item.createTime)} ${item.operatorName || `用户${item.operatorId}`}\n${item.content || '-'}`
+  })
+  const legalRows = [
+    ...detailPetitionList.value.slice(0, 3).map((item) => {
+      return `${formatDateTime(item.createTime)} 诉状 ${item.templateName || item.fileName || '-'}`
+    }),
+    ...detailEvidenceList.value.slice(0, 2).map((item) => {
+      return `${formatDateTime(item.createTime)} 证据 ${item.fileName || '-'}`
+    })
+  ]
+  const max = Math.max(serviceRows.length, legalRows.length, 1)
+  return Array.from({ length: max }, (_, index) => ({
+    service: serviceRows[index] || '-',
+    legal: legalRows[index] || '-'
+  }))
+})
+
+const detailContacts = computed(() => {
+  const caseData = detailCase.value
+  if (!caseData) {
+    return []
+  }
+  return [
+    { label: '联系人 1', value: [caseData.customerName, caseData.mobile].filter(Boolean).join(' - ') || '-' },
+    { label: '联系人 2', value: '-' },
+    { label: '联系人 3', value: '-' },
+    { label: '联系人 4', value: '-' }
+  ]
+})
+
+const detailDynamicFieldRows = computed(() => {
+  const items = modelFields.value.map((field) => {
+    const rawValue = field.fieldType === 'MULTI_SELECT'
+      ? getDetailDynamicFieldDisplay(field).join('、') || '-'
+      : getDetailDynamicFieldDisplay(field) || '-'
+    return {
+      label: field.fieldLabel,
+      value: String(rawValue)
+    }
+  })
+  const rows: Array<Array<{ label: string; value: string }>> = []
+  for (let index = 0; index < items.length; index += 4) {
+    rows.push(items.slice(index, index + 4))
+  }
+  return rows
+})
+
+const isEditingRow = (row: CourtCaseApi.CourtCaseVO) => editingCaseId.value === row.id
+
+const loadColumnWidthMap = () => {
+  try {
+    const cache = window.localStorage.getItem(CASE_TABLE_WIDTH_STORAGE_KEY)
+    columnWidthMap.value = cache ? JSON.parse(cache) : {}
+  } catch {
+    columnWidthMap.value = {}
+  }
+}
+
+const persistColumnWidthMap = () => {
+  window.localStorage.setItem(CASE_TABLE_WIDTH_STORAGE_KEY, JSON.stringify(columnWidthMap.value))
+}
+
+const getColumnWidth = (key: string, fallback: number) => {
+  return columnWidthMap.value[key] || fallback
+}
+
+const getRowClassName = ({ row }: { row: CourtCaseApi.CourtCaseVO }) => {
+  return isEditingRow(row) ? CASE_EDIT_ROW_CLASS : ''
+}
+
+const handleHeaderDragend = (newWidth: number, _oldWidth: number, column: { columnKey?: string; property?: string }) => {
+  const key = column?.columnKey || column?.property
+  if (!key) {
+    return
+  }
+  columnWidthMap.value = {
+    ...columnWidthMap.value,
+    [key]: Math.round(newWidth)
+  }
+  persistColumnWidthMap()
 }
 
 const getList = async () => {
@@ -631,6 +926,10 @@ const buildCaseExtCache = (rows: CourtCaseApi.CourtCaseVO[]) => {
   })
 }
 
+const resetEditingExtForm = () => {
+  Object.keys(editingExtForm).forEach((key) => delete editingExtForm[key])
+}
+
 const getDynamicFieldDisplay = (row: CourtCaseApi.CourtCaseVO, field: CourtCaseModelApi.CourtCaseModelFieldVO) => {
   const ext = caseExtCache[row.id] || {}
   const value = ext[field.fieldCode]
@@ -662,6 +961,105 @@ const getDetailDynamicFieldDisplay = (field: CourtCaseModelApi.CourtCaseModelFie
   return value
 }
 
+const startInlineEdit = (row: CourtCaseApi.CourtCaseVO) => {
+  editingCaseId.value = row.id
+  editingForm.id = row.id
+  editingForm.caseNo = row.caseNo
+  editingForm.orderNo = row.orderNo
+  editingForm.customerName = row.customerName
+  editingForm.mobile = row.mobile
+  editingForm.amount = Number(row.amount || 0)
+  editingForm.repaymentDueDate = formatLocalDate(row.repaymentDueDate)
+  editingForm.customerStatus = row.customerStatus || 'PENDING_REPAY'
+  resetEditingExtForm()
+  const ext = caseExtCache[row.id] || {}
+  modelFields.value.forEach((field) => {
+    const value = ext[field.fieldCode]
+    if (field.fieldType === 'MULTI_SELECT') {
+      editingExtForm[field.fieldCode] = Array.isArray(value) ? [...value] : value ? [value] : []
+      return
+    }
+    if (field.fieldType === 'NUMBER') {
+      editingExtForm[field.fieldCode] = value === undefined || value === null || value === '' ? undefined : Number(value)
+      return
+    }
+    editingExtForm[field.fieldCode] = value ?? ''
+  })
+}
+
+const cancelInlineEdit = () => {
+  editingCaseId.value = undefined
+  editingForm.id = undefined
+  resetEditingExtForm()
+}
+
+const validateEditingForm = () => {
+  if (!editingForm.caseNo.trim() || !editingForm.orderNo.trim() || !editingForm.customerName.trim() || !editingForm.mobile.trim()) {
+    message.warning('案件编号、订单号、客户姓名、联系电话不能为空')
+    return false
+  }
+  if (!editingForm.repaymentDueDate) {
+    message.warning('请选择应还款日期')
+    return false
+  }
+  return true
+}
+
+const handleDocumentPointerDown = (event: PointerEvent) => {
+  if (!editingCaseId.value) {
+    return
+  }
+  const target = event.target as HTMLElement | null
+  if (!target) {
+    cancelInlineEdit()
+    return
+  }
+  if (
+    target.closest(`.${CASE_EDIT_ROW_CLASS}`) ||
+    target.closest('.el-popper') ||
+    target.closest('.el-picker-panel') ||
+    target.closest('.el-select-dropdown')
+  ) {
+    return
+  }
+  void saveInlineEdit()
+}
+
+const saveInlineEdit = async () => {
+  if (!editingCaseId.value || !editingForm.id) {
+    return
+  }
+  if (!validateEditingForm()) {
+    return
+  }
+  const extPayload = modelFields.value.reduce((acc: Record<string, any>, field) => {
+    const value = editingExtForm[field.fieldCode]
+    if (Array.isArray(value) ? value.length : value !== undefined && value !== null && value !== '') {
+      acc[field.fieldCode] = value
+    }
+    return acc
+  }, {})
+  editingSaving.value = true
+  try {
+    await CourtCaseApi.updateCourtCase({
+      id: editingForm.id,
+      caseNo: editingForm.caseNo.trim(),
+      orderNo: editingForm.orderNo.trim(),
+      customerName: editingForm.customerName.trim(),
+      mobile: editingForm.mobile.trim(),
+      amount: editingForm.amount,
+      repaymentDueDate: editingForm.repaymentDueDate,
+      customerStatus: editingForm.customerStatus,
+      extJson: Object.keys(extPayload).length ? JSON.stringify(extPayload) : undefined
+    })
+    message.success('案件已更新')
+    cancelInlineEdit()
+    await getList()
+  } finally {
+    editingSaving.value = false
+  }
+}
+
 const splitAttachmentUrls = (value?: string) => {
   return (value || '')
     .split(',')
@@ -676,16 +1074,19 @@ const openCreateDialog = () => {
 
 const openDetailDrawer = async (row: CourtCaseApi.CourtCaseVO) => {
   detailDrawerVisible.value = true
-  detailActiveTab.value = 'basic'
   detailLoading.value = true
   try {
-    const [caseData, followUps, evidences, petitions, filing, logs] = await Promise.all([
-      CourtCaseApi.getCourtCase(row.id),
+    const caseData = await CourtCaseApi.getCourtCase(row.id)
+    const [followUps, logs, evidences, petitions, filing] = await Promise.all([
       ServiceWorkbenchApi.getFollowUpList(row.id).catch(() => []),
-      LegalApi.getEvidenceList(row.id).catch(() => []),
-      LegalApi.getPetitionRecordList(row.id).catch(() => []),
-      LegalApi.getFiling(row.id).catch(() => ({ caseId: row.id, status: 'PENDING', evidenceLocked: false })),
-      CourtCaseApi.getCourtCaseFlowLogList(row.id)
+      CourtCaseApi.getCourtCaseFlowLogList(row.id),
+      isLegalStageCase(caseData.currentStage) ? LegalApi.getEvidenceList(row.id).catch(() => []) : Promise.resolve([]),
+      isLegalStageCase(caseData.currentStage)
+        ? LegalApi.getPetitionRecordList(row.id).catch(() => [])
+        : Promise.resolve([]),
+      isLegalStageCase(caseData.currentStage)
+        ? LegalApi.getFiling(row.id).catch(() => ({ caseId: row.id, status: 'PENDING', evidenceLocked: false }))
+        : Promise.resolve({ caseId: row.id, status: 'PENDING', evidenceLocked: false })
     ])
     detailCase.value = caseData
     detailFollowUpList.value = followUps
@@ -788,36 +1189,213 @@ const handleDelete = async (row: CourtCaseApi.CourtCaseVO) => {
 }
 
 onMounted(() => {
+  loadColumnWidthMap()
   getModelFields()
   getList()
+  document.addEventListener('pointerdown', handleDocumentPointerDown, true)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('pointerdown', handleDocumentPointerDown, true)
 })
 </script>
 
 <style scoped>
-.detail-stat-card {
-  padding: 16px;
+.case-basic-panel {
   border: 1px solid var(--el-border-color-light);
   border-radius: 12px;
-  background: linear-gradient(135deg, #fff 0%, #f7fbff 100%);
+  overflow: hidden;
+  background: #fff;
 }
 
-.detail-stat-label {
+.case-basic-header {
+  padding: 9px 12px;
   font-size: 13px;
-  color: var(--el-text-color-secondary);
-  margin-bottom: 8px;
-}
-
-.detail-stat-value {
-  font-size: 22px;
   font-weight: 600;
   color: var(--el-text-color-primary);
-  line-height: 1.2;
+  background: linear-gradient(90deg, #edf6ff 0%, #f7fbff 100%);
+  border-bottom: 1px solid var(--el-border-color-light);
 }
 
-.detail-stat-desc {
-  margin-top: 6px;
-  font-size: 13px;
+.case-basic-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr 140px 1fr 140px 1fr 140px 1fr;
+}
+
+.case-basic-grid + .case-basic-grid {
+  border-top: 1px solid var(--el-border-color-lighter);
+}
+
+.case-basic-label,
+.case-basic-value {
+  min-height: 36px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.case-basic-label {
+  font-weight: 600;
   color: var(--el-text-color-secondary);
+  background: var(--el-fill-color-lighter);
+}
+
+.case-basic-value {
+  color: var(--el-text-color-primary);
+  border-left: 1px solid var(--el-border-color-lighter);
+}
+
+.case-basic-value.span-3 {
+  grid-column: span 3;
+}
+
+.case-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-note-board,
+.case-contact-board,
+.case-flow-board {
+  border: 1px solid var(--el-border-color-light);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.case-note-header,
+.case-contact-header,
+.case-flow-header {
+  display: grid;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.case-note-header {
+  grid-template-columns: 1fr 1fr;
+  background: linear-gradient(90deg, #ffe5c7 0%, #ffd4ab 100%);
+}
+
+.case-contact-header {
+  background: linear-gradient(90deg, #ffef99 0%, #ffe46f 100%);
+}
+
+.case-flow-header {
+  background: linear-gradient(90deg, #eef6ff 0%, #d9ebff 100%);
+}
+
+.case-note-grid {
+  display: grid;
+  grid-template-columns: 140px 1fr 140px 1fr;
+}
+
+.case-note-label,
+.case-note-value {
+  min-height: 36px;
+  padding: 7px 10px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  line-height: 1.35;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.case-note-label {
+  font-weight: 600;
+  color: #7c4b0c;
+  background: #fff3d7;
+  border-top: 1px solid var(--el-border-color-lighter);
+}
+
+.case-note-value {
+  border-left: 1px solid var(--el-border-color-lighter);
+  border-top: 1px solid var(--el-border-color-lighter);
+}
+
+.case-note-value.tall {
+  min-height: 64px;
+  align-items: flex-start;
+}
+
+.case-note-record-title {
+  padding: 9px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--el-text-color-primary);
+}
+
+.case-note-record-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.case-note-record-grid > div {
+  min-height: 40px;
+  padding: 7px 10px;
+  font-size: 12px;
+  border-top: 1px solid var(--el-border-color-lighter);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.case-note-record-grid > div + div {
+  border-left: 1px solid var(--el-border-color-lighter);
+}
+
+.case-note-record-header > div {
+  font-weight: 600;
+  background: #f7f8fa;
+}
+
+.case-contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.case-contact-card {
+  min-height: 60px;
+  padding: 9px 12px;
+  border-top: 1px solid var(--el-border-color-lighter);
+}
+
+.case-contact-card + .case-contact-card {
+  border-left: 1px solid var(--el-border-color-lighter);
+}
+
+.case-contact-name {
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--el-text-color-secondary);
+}
+
+.case-contact-value {
+  font-size: 12px;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.case-empty-block {
+  padding: 12px;
+  font-size: 12px;
+  color: var(--el-text-color-secondary);
+}
+
+.detail-sheet-compact :deep(.el-table) {
+  font-size: 12px;
+}
+
+.detail-sheet-compact :deep(.el-table th),
+.detail-sheet-compact :deep(.el-table td) {
+  padding: 6px 0;
 }
 
 .section-title {
@@ -828,5 +1406,19 @@ onMounted(() => {
 
 .whitespace-pre-wrap {
   white-space: pre-wrap;
+}
+
+.editable-cell {
+  min-height: 32px;
+  display: flex;
+  align-items: center;
+  cursor: text;
+  border-radius: 6px;
+  padding: 0 4px;
+  transition: background-color 0.2s ease;
+}
+
+.editable-cell:hover {
+  background: var(--el-fill-color-light);
 }
 </style>

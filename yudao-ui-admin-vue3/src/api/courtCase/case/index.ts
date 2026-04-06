@@ -4,10 +4,33 @@ export interface CourtCaseVO {
   id: number
   caseNo: string
   orderNo: string
+  contractNo?: string
+  companyName?: string
+  platformName?: string
+  supplierName?: string
+  serviceOwnerName?: string
+  expressNo?: string
+  productName?: string
+  packageInfo?: string
+  leaseMode?: string
   customerName: string
+  idCardNo?: string
   mobile: string
+  gender?: string
+  age?: number
   amount: number
+  totalRentAmount?: number
+  paidDepositAmount?: number
+  remainingDepositAmount?: number
+  installmentAmount?: number
+  installmentCount?: number
+  overdueDays?: number
+  remainingDays?: number
+  remainingUnpaidAmount?: number
+  overdueType?: string
   repaymentDueDate?: string
+  domicileAddress?: string
+  shippingAddress?: string
   currentStage: string
   currentDeptId: number
   currentAssigneeId: number
@@ -28,12 +51,40 @@ export interface CourtCaseVO {
 export interface CourtCaseCreateVO {
   caseNo: string
   orderNo: string
+  contractNo?: string
+  companyName?: string
+  platformName?: string
+  supplierName?: string
+  serviceOwnerName?: string
+  expressNo?: string
+  productName?: string
+  packageInfo?: string
+  leaseMode?: string
   customerName: string
+  idCardNo?: string
   mobile: string
+  gender?: string
+  age?: number
   amount: number
+  totalRentAmount?: number
+  paidDepositAmount?: number
+  remainingDepositAmount?: number
+  installmentAmount?: number
+  installmentCount?: number
+  overdueDays?: number
+  remainingDays?: number
+  remainingUnpaidAmount?: number
+  overdueType?: string
   repaymentDueDate: string
+  domicileAddress?: string
+  shippingAddress?: string
   currentAssigneeId?: number
   extJson?: string
+}
+
+export interface CourtCaseUpdateVO extends CourtCaseCreateVO {
+  id: number
+  customerStatus: string
 }
 
 export interface CourtCaseAdvanceVO {
@@ -49,6 +100,10 @@ export const createCourtCase = async (data: CourtCaseCreateVO) => {
 
 export const getCourtCase = async (id: number) => {
   return await request.get({ url: '/court-case/case/get?id=' + id })
+}
+
+export const updateCourtCase = async (data: CourtCaseUpdateVO) => {
+  return await request.post({ url: '/court-case/case/update', data })
 }
 
 export const deleteCourtCase = async (id: number) => {
