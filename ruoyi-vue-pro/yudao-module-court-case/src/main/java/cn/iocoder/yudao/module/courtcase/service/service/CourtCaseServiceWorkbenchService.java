@@ -14,7 +14,7 @@ public interface CourtCaseServiceWorkbenchService {
 
     PageResult<CourtCaseServiceWorkbenchRespVO> getOverduePage(Long userId, CourtCaseServiceWorkbenchPageReqVO reqVO);
 
-    List<CourtCaseFollowUpRespVO> getFollowUpList(Long caseId);
+    List<CourtCaseFollowUpRespVO> getFollowUpList(Long userId, Long caseId);
 
     void createFollowUp(Long userId, @Valid CourtCaseFollowUpCreateReqVO reqVO);
 

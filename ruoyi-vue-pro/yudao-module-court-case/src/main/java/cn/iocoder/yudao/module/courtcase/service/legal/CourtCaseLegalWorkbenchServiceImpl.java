@@ -22,6 +22,7 @@ import cn.iocoder.yudao.module.courtcase.dal.mysql.legal.CourtCaseFilingMapper;
 import cn.iocoder.yudao.module.courtcase.dal.mysql.legal.CourtCasePetitionRecordMapper;
 import cn.iocoder.yudao.module.courtcase.dal.mysql.legal.CourtCasePetitionTemplateMapper;
 import cn.iocoder.yudao.module.courtcase.enums.*;
+import cn.iocoder.yudao.module.courtcase.service.support.CourtCaseAccessControlHelper;
 import cn.iocoder.yudao.module.infra.dal.dataobject.file.FileDO;
 import cn.iocoder.yudao.module.infra.dal.mysql.file.FileMapper;
 import cn.iocoder.yudao.module.infra.service.file.FileService;
@@ -83,6 +84,8 @@ public class CourtCaseLegalWorkbenchServiceImpl implements CourtCaseLegalWorkben
     private FileService fileService;
     @Resource
     private AdminUserApi adminUserApi;
+    @Resource
+    private CourtCaseAccessControlHelper accessControlHelper;
 
     @Override
     public CourtCaseLegalSummaryRespVO getSummary(Long userId) {
@@ -469,18 +472,16 @@ public class CourtCaseLegalWorkbenchServiceImpl implements CourtCaseLegalWorkben
     }
 
     private List<CourtCaseDO> getLegalCases(Long userId, CourtCaseLegalCasePageReqVO reqVO) {
-        AdminUserRespDTO operator = validateOperator(userId);
         String caseNo = reqVO != null ? reqVO.getCaseNo() : null;
         String customerName = reqVO != null ? reqVO.getCustomerName() : null;
         String currentStage = reqVO != null ? reqVO.getCurrentStage() : null;
-        return courtCaseMapper.selectList(Wrappers.<CourtCaseDO>lambdaQuery()
-                .eq(CourtCaseDO::getCurrentDeptId, operator.getDeptId())
+        return accessControlHelper.filterLegalCases(userId, courtCaseMapper.selectList(Wrappers.<CourtCaseDO>lambdaQuery()
                 .in(CourtCaseDO::getCurrentStage, LEGAL_STAGES)
                 .like(StrUtil.isNotBlank(caseNo), CourtCaseDO::getCaseNo, caseNo)
                 .like(StrUtil.isNotBlank(customerName), CourtCaseDO::getCustomerName, customerName)
                 .eq(StrUtil.isNotBlank(currentStage), CourtCaseDO::getCurrentStage, currentStage)
                 .orderByDesc(CourtCaseDO::getUpdateTime)
-                .orderByDesc(CourtCaseDO::getId));
+                .orderByDesc(CourtCaseDO::getId)));
     }
 
     private CourtCaseDO validateLegalCase(Long caseId) {
@@ -527,9 +528,8 @@ public class CourtCaseLegalWorkbenchServiceImpl implements CourtCaseLegalWorkben
     }
 
     private void validateLegalOperator(Long userId, CourtCaseDO courtCase) {
-        AdminUserRespDTO operator = validateOperator(userId);
-        if (!ObjectUtil.equal(courtCase.getCurrentDeptId(), operator.getDeptId())) {
-            throw exception(CASE_OPERATOR_NOT_IN_DEPT);
+        if (!accessControlHelper.canManageLegalCase(userId, courtCase)) {
+            throw exception(CASE_PERMISSION_DENIED);
         }
     }
 

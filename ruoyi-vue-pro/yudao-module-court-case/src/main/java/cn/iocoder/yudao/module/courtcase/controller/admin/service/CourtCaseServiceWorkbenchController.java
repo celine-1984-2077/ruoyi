@@ -27,35 +27,35 @@ public class CourtCaseServiceWorkbenchController {
     private CourtCaseServiceWorkbenchService courtCaseServiceWorkbenchService;
 
     @GetMapping("/summary")
-    @PreAuthorize("@ss.hasPermission('court-case:case:query')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:query') or @ss.hasAnyRoles('super_admin','court_service_agent','court_service_manager')")
     @Operation(summary = "获得客服工作台汇总")
     public CommonResult<CourtCaseServiceWorkbenchSummaryRespVO> getSummary() {
         return success(courtCaseServiceWorkbenchService.getSummary(getLoginUserId()));
     }
 
     @GetMapping("/reminder-page")
-    @PreAuthorize("@ss.hasPermission('court-case:case:query')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:query') or @ss.hasAnyRoles('super_admin','court_service_agent','court_service_manager')")
     @Operation(summary = "获得还款提醒分页")
     public CommonResult<PageResult<CourtCaseServiceWorkbenchRespVO>> getReminderPage(@Valid CourtCaseServiceWorkbenchPageReqVO reqVO) {
         return success(courtCaseServiceWorkbenchService.getReminderPage(getLoginUserId(), reqVO));
     }
 
     @GetMapping("/overdue-page")
-    @PreAuthorize("@ss.hasPermission('court-case:case:query')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:query') or @ss.hasAnyRoles('super_admin','court_service_agent','court_service_manager')")
     @Operation(summary = "获得逾期客户分页")
     public CommonResult<PageResult<CourtCaseServiceWorkbenchRespVO>> getOverduePage(@Valid CourtCaseServiceWorkbenchPageReqVO reqVO) {
         return success(courtCaseServiceWorkbenchService.getOverduePage(getLoginUserId(), reqVO));
     }
 
     @GetMapping("/follow-up/list")
-    @PreAuthorize("@ss.hasPermission('court-case:case:query')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:query') or @ss.hasAnyRoles('super_admin','court_service_agent','court_service_manager')")
     @Operation(summary = "获得跟进记录列表")
     public CommonResult<List<CourtCaseFollowUpRespVO>> getFollowUpList(@RequestParam("caseId") Long caseId) {
-        return success(courtCaseServiceWorkbenchService.getFollowUpList(caseId));
+        return success(courtCaseServiceWorkbenchService.getFollowUpList(getLoginUserId(), caseId));
     }
 
     @PostMapping("/follow-up/create")
-    @PreAuthorize("@ss.hasPermission('court-case:case:advance')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:follow-up:create') or @ss.hasAnyRoles('super_admin','court_service_agent')")
     @Operation(summary = "新增跟进记录")
     public CommonResult<Boolean> createFollowUp(@Valid @RequestBody CourtCaseFollowUpCreateReqVO reqVO) {
         courtCaseServiceWorkbenchService.createFollowUp(getLoginUserId(), reqVO);
@@ -63,7 +63,7 @@ public class CourtCaseServiceWorkbenchController {
     }
 
     @PostMapping("/reminder/create")
-    @PreAuthorize("@ss.hasPermission('court-case:case:advance')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:reminder:create') or @ss.hasAnyRoles('super_admin','court_service_agent')")
     @Operation(summary = "新增临时提醒")
     public CommonResult<Boolean> createReminder(@Valid @RequestBody CourtCaseReminderCreateReqVO reqVO) {
         courtCaseServiceWorkbenchService.createCustomReminder(getLoginUserId(), reqVO);
@@ -71,7 +71,7 @@ public class CourtCaseServiceWorkbenchController {
     }
 
     @PostMapping("/mark-repaid")
-    @PreAuthorize("@ss.hasPermission('court-case:case:advance')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:mark-repaid') or @ss.hasAnyRoles('super_admin','court_service_agent')")
     @Operation(summary = "标记已还款")
     public CommonResult<Boolean> markRepaid(@RequestParam("caseId") Long caseId) {
         courtCaseServiceWorkbenchService.markRepaid(getLoginUserId(), caseId);
@@ -79,7 +79,7 @@ public class CourtCaseServiceWorkbenchController {
     }
 
     @PostMapping("/transfer-legal")
-    @PreAuthorize("@ss.hasPermission('court-case:case:advance')")
+    @PreAuthorize("@ss.hasPermission('court-case:service:transfer:create') or @ss.hasAnyRoles('super_admin','court_service_agent')")
     @Operation(summary = "移交法诉")
     public CommonResult<Boolean> transferLegal(@Valid @RequestBody CourtCaseTransferReqVO reqVO) {
         courtCaseServiceWorkbenchService.transferToLegal(getLoginUserId(), reqVO);

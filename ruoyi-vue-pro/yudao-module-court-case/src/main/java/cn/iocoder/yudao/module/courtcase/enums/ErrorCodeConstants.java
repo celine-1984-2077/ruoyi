@@ -29,6 +29,7 @@ public interface ErrorCodeConstants {
     ErrorCode CASE_PETITION_OVERRIDE_FILE_REQUIRED = new ErrorCode(1_030_000_037, "请先上传新的诉状文件");
     ErrorCode CASE_FILING_REJECT_REASON_REQUIRED = new ErrorCode(1_030_000_038, "立案驳回时必须填写驳回原因");
     ErrorCode CASE_FILING_NOT_EXISTS = new ErrorCode(1_030_000_039, "立案信息不存在");
+    ErrorCode CASE_PERMISSION_DENIED = new ErrorCode(1_030_000_040, "当前用户无权查看或操作该案件");
     ErrorCode CASE_MODEL_NOT_EXISTS = new ErrorCode(1_030_000_005, "案件模型不存在");
     ErrorCode CASE_MODEL_DRAFT_ONLY = new ErrorCode(1_030_000_006, "只有草稿版本支持编辑");
     ErrorCode CASE_MODEL_FIELD_TYPE_INVALID = new ErrorCode(1_030_000_007, "案件模型字段类型不合法: {}");

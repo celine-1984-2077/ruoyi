@@ -14,15 +14,15 @@ public interface CourtCaseService {
 
     Long createCase(Long userId, @Valid CourtCaseCreateReqVO createReqVO);
 
-    CourtCaseDO getCase(Long id);
+    CourtCaseDO getCase(Long userId, Long id);
 
-    void deleteCase(Long id);
+    void deleteCase(Long userId, Long id);
 
-    PageResult<CourtCaseDO> getCasePage(CourtCasePageReqVO pageReqVO);
+    PageResult<CourtCaseDO> getCasePage(Long userId, CourtCasePageReqVO pageReqVO);
 
     PageResult<CourtCaseDO> getWorkbenchPage(Long userId, CourtCasePageReqVO pageReqVO);
 
     void advanceCase(Long userId, @Valid CourtCaseAdvanceReqVO advanceReqVO);
 
-    List<CourtCaseFlowLogDO> getCaseFlowLogs(Long caseId);
+    List<CourtCaseFlowLogDO> getCaseFlowLogs(Long userId, Long caseId);
 }

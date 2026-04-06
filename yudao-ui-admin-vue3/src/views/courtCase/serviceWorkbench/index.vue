@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="hero__actions">
-        <el-button plain @click="router.push('/court-case/case')">
+        <el-button v-hasPermi="['court-case:case:query']" plain @click="router.push('/court-case/case')">
           <Icon icon="ep:tickets" class="mr-5px" />
           案件台账
         </el-button>
@@ -41,8 +41,14 @@
   </div>
 
   <ContentWrap>
-    <el-tabs v-model="activeTab">
-      <el-tab-pane label="还款提醒" name="reminder">
+    <div class="section-head">
+      <div>
+        <div class="section-title">{{ serviceSectionMeta.title }}</div>
+        <div class="section-subtitle">{{ serviceSectionMeta.description }}</div>
+      </div>
+    </div>
+
+    <template v-if="activeTab === 'reminder'">
         <el-form :inline="true" :model="reminderQuery" class="-mb-15px">
           <el-form-item label="案件编号">
             <el-input v-model="reminderQuery.caseNo" placeholder="请输入案件编号" clearable class="!w-220px" />
@@ -88,9 +94,9 @@
           <el-table-column label="操作" width="280" fixed="right">
             <template #default="{ row }">
               <el-button link type="primary" @click="openFollowUpDrawer(row)">跟进记录</el-button>
-              <el-button link type="primary" @click="openFollowUpDialog(row)">跟进备注</el-button>
-              <el-button link type="warning" @click="openReminderDialog(row)">设置下次提醒</el-button>
-              <el-button link type="success" @click="handleMarkRepaid(row)">标记已还款</el-button>
+              <el-button v-hasPermi="['court-case:service:follow-up:create']" link type="primary" @click="openFollowUpDialog(row)">跟进备注</el-button>
+              <el-button v-hasPermi="['court-case:service:reminder:create']" link type="warning" @click="openReminderDialog(row)">设置下次提醒</el-button>
+              <el-button v-hasPermi="['court-case:service:mark-repaid']" link type="success" @click="handleMarkRepaid(row)">标记已还款</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -100,9 +106,9 @@
           :total="reminderTotal"
           @pagination="getReminderPage"
         />
-      </el-tab-pane>
+    </template>
 
-      <el-tab-pane label="逾期客户" name="overdue">
+    <template v-else>
         <el-form :inline="true" :model="overdueQuery" class="-mb-15px">
           <el-form-item label="案件编号">
             <el-input v-model="overdueQuery.caseNo" placeholder="请输入案件编号" clearable class="!w-220px" />
@@ -149,9 +155,10 @@
           <el-table-column label="操作" width="320" fixed="right">
             <template #default="{ row }">
               <el-button link type="primary" @click="openFollowUpDrawer(row)">跟进记录</el-button>
-              <el-button link type="primary" @click="openFollowUpDialog(row)">跟进备注</el-button>
-              <el-button link type="warning" @click="openReminderDialog(row)">设置下次提醒</el-button>
+              <el-button v-hasPermi="['court-case:service:follow-up:create']" link type="primary" @click="openFollowUpDialog(row)">跟进备注</el-button>
+              <el-button v-hasPermi="['court-case:service:reminder:create']" link type="warning" @click="openReminderDialog(row)">设置下次提醒</el-button>
               <el-button
+                v-hasPermi="['court-case:service:transfer:create']"
                 link
                 type="danger"
                 :disabled="!row.canTransferLegal"
@@ -159,7 +166,7 @@
               >
                 移交法诉
               </el-button>
-              <el-button link type="success" @click="handleMarkRepaid(row)">标记已还款</el-button>
+              <el-button v-hasPermi="['court-case:service:mark-repaid']" link type="success" @click="handleMarkRepaid(row)">标记已还款</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -169,8 +176,7 @@
           :total="overdueTotal"
           @pagination="getOverduePage"
         />
-      </el-tab-pane>
-    </el-tabs>
+    </template>
   </ContentWrap>
 
   <el-drawer v-model="followUpDrawerVisible" size="520px" :title="`${selectedCase?.customerName || ''} 的跟进记录`">
@@ -287,6 +293,7 @@ import { getSimpleUserList, type UserVO } from '@/api/system/user'
 defineOptions({ name: 'CourtCaseServiceWorkbench' })
 
 const router = useRouter()
+const route = useRoute()
 const message = useMessage()
 
 const activeTab = ref('reminder')
@@ -305,6 +312,29 @@ const customerStatusLabelMap: Record<string, string> = {
   FOLLOWING: '跟进中',
   TRANSFERRED_TO_LEGAL: '已移交法诉',
   REPAID: '已还款'
+}
+
+const serviceSectionMeta = computed(() => {
+  if (route.path.includes('overdue')) {
+    return {
+      title: '我的逾期客户',
+      description: '只保留逾期客户池，方便持续跟进、追加备注并在满足条件后移交法诉。'
+    }
+  }
+  if (route.path.includes('follow-up')) {
+    return {
+      title: '我的跟进',
+      description: '展示当前由你持续跟进的客服待办，方便补充备注和安排下一次提醒。'
+    }
+  }
+  return {
+    title: '还款提醒',
+    description: '自动筛出应还款日临近的客户，作为客服工作台默认入口。'
+  }
+})
+
+const syncActiveTabByRoute = () => {
+  activeTab.value = route.path.includes('overdue') ? 'overdue' : 'reminder'
 }
 
 const reminderLoading = ref(false)
@@ -548,9 +578,17 @@ const maybePopupDueReminder = () => {
 }
 
 onMounted(async () => {
+  syncActiveTabByRoute()
   await Promise.all([getSummary(), getReminderPage(), getOverduePage(), initLegalUsers()])
   maybePopupDueReminder()
 })
+
+watch(
+  () => route.path,
+  () => {
+    syncActiveTabByRoute()
+  }
+)
 </script>
 
 <style scoped>
@@ -580,6 +618,22 @@ onMounted(async () => {
   margin-top: 10px;
   color: var(--el-text-color-secondary);
   line-height: 1.8;
+}
+
+.section-head {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  margin-top: 6px;
+  color: var(--el-text-color-secondary);
+  font-size: 13px;
+  line-height: 1.7;
 }
 
 .summary-grid {

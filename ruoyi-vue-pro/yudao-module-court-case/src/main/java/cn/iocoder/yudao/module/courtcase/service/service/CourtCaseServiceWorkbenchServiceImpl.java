@@ -8,6 +8,7 @@ import cn.iocoder.yudao.module.courtcase.controller.admin.service.vo.*;
 import cn.iocoder.yudao.module.courtcase.dal.dataobject.cases.*;
 import cn.iocoder.yudao.module.courtcase.dal.mysql.cases.*;
 import cn.iocoder.yudao.module.courtcase.enums.*;
+import cn.iocoder.yudao.module.courtcase.service.support.CourtCaseAccessControlHelper;
 import cn.iocoder.yudao.module.system.api.user.AdminUserApi;
 import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,8 @@ public class CourtCaseServiceWorkbenchServiceImpl implements CourtCaseServiceWor
     private CourtCaseTransferMapper courtCaseTransferMapper;
     @Resource
     private AdminUserApi adminUserApi;
+    @Resource
+    private CourtCaseAccessControlHelper accessControlHelper;
 
     @Override
     public CourtCaseServiceWorkbenchSummaryRespVO getSummary(Long userId) {
@@ -117,8 +120,11 @@ public class CourtCaseServiceWorkbenchServiceImpl implements CourtCaseServiceWor
     }
 
     @Override
-    public List<CourtCaseFollowUpRespVO> getFollowUpList(Long caseId) {
-        validateCaseExists(caseId);
+    public List<CourtCaseFollowUpRespVO> getFollowUpList(Long userId, Long caseId) {
+        CourtCaseDO courtCase = validateCaseExists(caseId);
+        if (!accessControlHelper.canViewCase(userId, courtCase)) {
+            throw exception(CASE_PERMISSION_DENIED);
+        }
         List<CourtCaseFollowUpDO> list = courtCaseFollowUpMapper.selectListByCaseId(caseId);
         Map<Long, AdminUserRespDTO> userMap = adminUserApi.getUserMap(
                 list.stream().map(CourtCaseFollowUpDO::getOperatorId).collect(Collectors.toSet()));
@@ -248,14 +254,12 @@ public class CourtCaseServiceWorkbenchServiceImpl implements CourtCaseServiceWor
     }
 
     private List<CourtCaseDO> getServiceCases(Long userId, CourtCaseServiceWorkbenchPageReqVO reqVO) {
-        AdminUserRespDTO operator = validateOperator(userId);
-        return courtCaseMapper.selectList(new LambdaQueryWrapperX<CourtCaseDO>()
-                .eq(CourtCaseDO::getCurrentDeptId, operator.getDeptId())
+        return accessControlHelper.filterServiceCases(userId, courtCaseMapper.selectList(new LambdaQueryWrapperX<CourtCaseDO>()
                 .in(CourtCaseDO::getCurrentStage, SERVICE_STAGES)
                 .likeIfPresent(CourtCaseDO::getCaseNo, reqVO != null ? reqVO.getCaseNo() : null)
                 .likeIfPresent(CourtCaseDO::getCustomerName, reqVO != null ? reqVO.getCustomerName() : null)
                 .orderByAsc(CourtCaseDO::getRepaymentDueDate)
-                .orderByDesc(CourtCaseDO::getId));
+                .orderByDesc(CourtCaseDO::getId)));
     }
 
     private Map<Long, CourtCaseReminderDO> getLatestPendingReminderMap(List<CourtCaseDO> cases) {
@@ -337,9 +341,8 @@ public class CourtCaseServiceWorkbenchServiceImpl implements CourtCaseServiceWor
     }
 
     private void validateServiceOperator(Long userId, CourtCaseDO courtCase) {
-        AdminUserRespDTO operator = validateOperator(userId);
-        if (!ObjectUtil.equal(courtCase.getCurrentDeptId(), operator.getDeptId())) {
-            throw exception(CASE_OPERATOR_NOT_IN_DEPT);
+        if (!accessControlHelper.canManageServiceCase(userId, courtCase)) {
+            throw exception(CASE_PERMISSION_DENIED);
         }
     }
 

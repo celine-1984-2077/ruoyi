@@ -15,8 +15,10 @@ import cn.iocoder.yudao.module.courtcase.enums.CourtCaseCustomerStatusEnum;
 import cn.iocoder.yudao.module.courtcase.enums.CourtCaseStageEnum;
 import cn.iocoder.yudao.module.courtcase.enums.CourtCaseStatusEnum;
 import cn.iocoder.yudao.module.courtcase.service.model.CourtCaseModelService;
+import cn.iocoder.yudao.module.courtcase.service.support.CourtCaseAccessControlHelper;
 import cn.iocoder.yudao.module.system.api.user.AdminUserApi;
 import cn.iocoder.yudao.module.system.api.user.dto.AdminUserRespDTO;
+import cn.iocoder.yudao.framework.mybatis.core.query.LambdaQueryWrapperX;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
@@ -24,6 +26,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Collections;
 
 import static cn.iocoder.yudao.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static cn.iocoder.yudao.module.courtcase.enums.ErrorCodeConstants.*;
@@ -40,6 +43,8 @@ public class CourtCaseServiceImpl implements CourtCaseService {
     private AdminUserApi adminUserApi;
     @Resource
     private CourtCaseModelService courtCaseModelService;
+    @Resource
+    private CourtCaseAccessControlHelper accessControlHelper;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -59,14 +64,19 @@ public class CourtCaseServiceImpl implements CourtCaseService {
     }
 
     @Override
-    public CourtCaseDO getCase(Long id) {
-        return validateCaseExists(id);
+    public CourtCaseDO getCase(Long userId, Long id) {
+        CourtCaseDO courtCase = validateCaseExists(id);
+        validateCasePermission(userId, courtCase);
+        return courtCase;
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteCase(Long id) {
+    public void deleteCase(Long userId, Long id) {
         CourtCaseDO courtCase = validateCaseExists(id);
+        if (!accessControlHelper.isSuperAdmin(userId)) {
+            throw exception(CASE_PERMISSION_DENIED);
+        }
         if (ObjectUtil.equal(courtCase.getStatus(), CourtCaseStatusEnum.ARCHIVED.getStatus())) {
             throw exception(CASE_DELETE_ARCHIVED_FORBIDDEN);
         }
@@ -75,15 +85,15 @@ public class CourtCaseServiceImpl implements CourtCaseService {
     }
 
     @Override
-    public PageResult<CourtCaseDO> getCasePage(CourtCasePageReqVO pageReqVO) {
-        return courtCaseMapper.selectPage(pageReqVO);
+    public PageResult<CourtCaseDO> getCasePage(Long userId, CourtCasePageReqVO pageReqVO) {
+        List<CourtCaseDO> filtered = accessControlHelper.filterCaseList(userId, selectCases(pageReqVO));
+        return page(filtered, pageReqVO);
     }
 
     @Override
     public PageResult<CourtCaseDO> getWorkbenchPage(Long userId, CourtCasePageReqVO pageReqVO) {
-        AdminUserRespDTO operator = validateOperator(userId);
-        pageReqVO.setCurrentDeptId(operator.getDeptId());
-        return courtCaseMapper.selectPage(pageReqVO);
+        List<CourtCaseDO> filtered = accessControlHelper.filterCaseList(userId, selectCases(pageReqVO));
+        return page(filtered, pageReqVO);
     }
 
     @Override
@@ -91,11 +101,13 @@ public class CourtCaseServiceImpl implements CourtCaseService {
     public void advanceCase(Long userId, @Valid CourtCaseAdvanceReqVO advanceReqVO) {
         CourtCaseDO courtCase = validateCaseExists(advanceReqVO.getId());
         AdminUserRespDTO operator = validateOperator(userId);
-        if (!ObjectUtil.equal(courtCase.getCurrentDeptId(), operator.getDeptId())) {
-            throw exception(CASE_OPERATOR_NOT_IN_DEPT);
-        }
-        if (courtCase.getCurrentAssigneeId() != null && !ObjectUtil.equal(courtCase.getCurrentAssigneeId(), userId)) {
-            throw exception(CASE_OPERATOR_NOT_ASSIGNEE);
+        if (!accessControlHelper.isSuperAdmin(userId)) {
+            if (!accessControlHelper.canViewCase(userId, courtCase)) {
+                throw exception(CASE_PERMISSION_DENIED);
+            }
+            if (courtCase.getCurrentAssigneeId() != null && !ObjectUtil.equal(courtCase.getCurrentAssigneeId(), userId)) {
+                throw exception(CASE_OPERATOR_NOT_ASSIGNEE);
+            }
         }
 
         CourtCaseActionEnum actionEnum = CourtCaseActionEnum.valueOfAction(advanceReqVO.getAction());
@@ -122,8 +134,9 @@ public class CourtCaseServiceImpl implements CourtCaseService {
     }
 
     @Override
-    public List<CourtCaseFlowLogDO> getCaseFlowLogs(Long caseId) {
-        validateCaseExists(caseId);
+    public List<CourtCaseFlowLogDO> getCaseFlowLogs(Long userId, Long caseId) {
+        CourtCaseDO courtCase = validateCaseExists(caseId);
+        validateCasePermission(userId, courtCase);
         return courtCaseFlowLogMapper.selectListByCaseId(caseId);
     }
 
@@ -139,6 +152,36 @@ public class CourtCaseServiceImpl implements CourtCaseService {
         AdminUserRespDTO user = adminUserApi.getUser(userId);
         adminUserApi.validateUser(userId);
         return user;
+    }
+
+    private void validateCasePermission(Long userId, CourtCaseDO courtCase) {
+        if (!accessControlHelper.canViewCase(userId, courtCase)) {
+            throw exception(CASE_PERMISSION_DENIED);
+        }
+    }
+
+    private List<CourtCaseDO> selectCases(CourtCasePageReqVO pageReqVO) {
+        return courtCaseMapper.selectList(new LambdaQueryWrapperX<CourtCaseDO>()
+                .likeIfPresent(CourtCaseDO::getCaseNo, pageReqVO.getCaseNo())
+                .likeIfPresent(CourtCaseDO::getOrderNo, pageReqVO.getOrderNo())
+                .likeIfPresent(CourtCaseDO::getCustomerName, pageReqVO.getCustomerName())
+                .eqIfPresent(CourtCaseDO::getCurrentStage, pageReqVO.getCurrentStage())
+                .eqIfPresent(CourtCaseDO::getCurrentDeptId, pageReqVO.getCurrentDeptId())
+                .eqIfPresent(CourtCaseDO::getCurrentAssigneeId, pageReqVO.getCurrentAssigneeId())
+                .eqIfPresent(CourtCaseDO::getStatus, pageReqVO.getStatus())
+                .betweenIfPresent(CourtCaseDO::getCreateTime, pageReqVO.getCreateTime())
+                .orderByDesc(CourtCaseDO::getId));
+    }
+
+    private PageResult<CourtCaseDO> page(List<CourtCaseDO> list, CourtCasePageReqVO reqVO) {
+        int pageNo = reqVO != null && reqVO.getPageNo() != null ? reqVO.getPageNo() : 1;
+        int pageSize = reqVO != null && reqVO.getPageSize() != null ? reqVO.getPageSize() : 10;
+        int fromIndex = Math.max((pageNo - 1) * pageSize, 0);
+        if (fromIndex >= list.size()) {
+            return new PageResult<>(Collections.emptyList(), (long) list.size());
+        }
+        int toIndex = Math.min(fromIndex + pageSize, list.size());
+        return new PageResult<>(list.subList(fromIndex, toIndex), (long) list.size());
     }
 
     private void fillAssigneeAndDept(CourtCaseDO courtCase, Long nextAssigneeId, Long fallbackUserId) {

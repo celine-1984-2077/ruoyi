@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="hero__actions">
-        <el-button plain @click="router.push('/court-case/case')">
+        <el-button v-hasPermi="['court-case:case:query']" plain @click="router.push('/court-case/case')">
           <Icon icon="ep:tickets" class="mr-5px" />
           案件台账
         </el-button>
@@ -46,20 +46,6 @@
         <div>
           <div class="panel-title">法务案件池</div>
           <div class="panel-subtitle">选择案件后，在右侧处理证据、诉状和立案信息</div>
-        </div>
-        <div class="panel-chip-list">
-          <button class="panel-chip" :class="{ 'is-active': !queryParams.currentStage }" @click="toggleStage(undefined)">
-            全部案件
-          </button>
-          <button class="panel-chip" :class="{ 'is-active': queryParams.currentStage === 'LEGAL' }" @click="toggleStage('LEGAL')">
-            法务
-          </button>
-          <button class="panel-chip" :class="{ 'is-active': queryParams.currentStage === 'LITIGATION' }" @click="toggleStage('LITIGATION')">
-            诉讼中
-          </button>
-          <button class="panel-chip" :class="{ 'is-active': queryParams.currentStage === 'ARCHIVED' }" @click="toggleStage('ARCHIVED')">
-            已归档
-          </button>
         </div>
       </div>
 
@@ -136,14 +122,20 @@
           </div>
         </div>
 
-        <el-tabs v-model="activeTab" class="mt-12px">
-          <el-tab-pane label="证据材料" name="evidence">
+        <div class="section-head mt-12px">
+          <div>
+            <div class="section-title">{{ legalSectionMeta.title }}</div>
+            <div class="section-subtitle">{{ legalSectionMeta.description }}</div>
+          </div>
+        </div>
+
+        <template v-if="activeTab === 'evidence'">
             <div class="section-actions">
-              <el-button type="primary" @click="openEvidenceDialog">
+              <el-button v-hasPermi="['court-case:legal:evidence:create']" type="primary" @click="openEvidenceDialog">
                 <Icon icon="ep:upload-filled" class="mr-5px" />
                 上传证据
               </el-button>
-              <el-button @click="handleDownloadEvidenceZip">
+              <el-button v-hasPermi="['court-case:legal:evidence:download']" @click="handleDownloadEvidenceZip">
                 <Icon icon="ep:download" class="mr-5px" />
                 打包下载
               </el-button>
@@ -171,15 +163,21 @@
                 <template #default="{ row }">
                   <el-button link type="primary" @click="previewFile(row.fileUrl)">预览</el-button>
                   <el-button link type="primary" @click="downloadByUrl({ url: row.fileUrl, fileName: row.fileName })">下载</el-button>
-                  <el-button link type="danger" :disabled="!row.canDelete" @click="handleDeleteEvidence(row)">
+                  <el-button
+                    v-hasPermi="['court-case:legal:evidence:delete']"
+                    link
+                    type="danger"
+                    :disabled="!row.canDelete"
+                    @click="handleDeleteEvidence(row)"
+                  >
                     删除
                   </el-button>
                 </template>
               </el-table-column>
             </el-table>
-          </el-tab-pane>
+        </template>
 
-          <el-tab-pane label="诉状管理" name="petition">
+        <template v-else-if="activeTab === 'petition'">
             <div class="petition-bar">
               <el-select v-model="petitionGenerateForm.templateId" class="!w-260px" placeholder="请选择诉状模板">
                 <el-option
@@ -189,10 +187,16 @@
                   :value="item.id"
                 />
               </el-select>
-              <el-button type="primary" :disabled="!petitionGenerateForm.templateId" :loading="petitionGenerating" @click="handleGeneratePetition">
+              <el-button
+                v-hasPermi="['court-case:legal:petition:generate']"
+                type="primary"
+                :disabled="!petitionGenerateForm.templateId"
+                :loading="petitionGenerating"
+                @click="handleGeneratePetition"
+              >
                 生成诉状
               </el-button>
-              <el-button @click="openTemplateDialog()">新增模板</el-button>
+              <el-button v-hasPermi="['court-case:legal:template:manage']" @click="openTemplateDialog()">新增模板</el-button>
             </div>
 
             <el-card class="template-card mt-12px" shadow="never">
@@ -220,8 +224,8 @@
                 </el-table-column>
                 <el-table-column label="操作" width="140" fixed="right">
                   <template #default="{ row }">
-                    <el-button link type="primary" @click="openTemplateDialog(row)">编辑</el-button>
-                    <el-button link type="danger" @click="handleDeleteTemplate(row)">删除</el-button>
+                    <el-button v-hasPermi="['court-case:legal:template:manage']" link type="primary" @click="openTemplateDialog(row)">编辑</el-button>
+                    <el-button v-hasPermi="['court-case:legal:template:manage']" link type="danger" @click="handleDeleteTemplate(row)">删除</el-button>
                   </template>
                 </el-table-column>
               </el-table>
@@ -248,13 +252,13 @@
                 <template #default="{ row }">
                   <el-button link type="primary" @click="previewFile(row.fileUrl)">预览</el-button>
                   <el-button link type="primary" @click="downloadByUrl({ url: row.fileUrl, fileName: row.fileName })">下载</el-button>
-                  <el-button link type="warning" @click="openOverrideDialog(row)">重新上传覆盖</el-button>
+                  <el-button v-hasPermi="['court-case:legal:petition:override']" link type="warning" @click="openOverrideDialog(row)">重新上传覆盖</el-button>
                 </template>
               </el-table-column>
             </el-table>
-          </el-tab-pane>
+        </template>
 
-          <el-tab-pane label="法院立案" name="filing">
+        <template v-else>
             <el-alert
               :title="filingForm.evidenceLocked ? '当前案件已经提交立案，证据材料只读。' : '当前案件尚未提交立案，证据材料仍可调整。'"
               :type="filingForm.evidenceLocked ? 'warning' : 'info'"
@@ -289,10 +293,9 @@
             </el-form>
 
             <div class="section-actions mt-12px">
-              <el-button type="primary" :loading="filingSubmitting" @click="submitFiling">保存立案信息</el-button>
+              <el-button v-hasPermi="['court-case:legal:filing:save']" type="primary" :loading="filingSubmitting" @click="submitFiling">保存立案信息</el-button>
             </div>
-          </el-tab-pane>
-        </el-tabs>
+        </template>
       </template>
 
       <el-empty v-else description="先从左侧选择一条法务案件" />
@@ -393,6 +396,7 @@ defineOptions({ name: 'CourtCaseLegalWorkbench' })
 
 const message = useMessage()
 const router = useRouter()
+const route = useRoute()
 
 const summary = ref<LegalApi.LegalSummaryVO>({
   legalCount: 0,
@@ -521,6 +525,43 @@ const filingTagTypeMap: Record<string, string> = {
   REJECTED: 'danger',
   CLOSED: 'info'
 }
+
+const syncActiveTabByRoute = () => {
+  if (route.path.includes('petition')) {
+    activeTab.value = 'petition'
+    return
+  }
+  if (route.path.includes('filing')) {
+    activeTab.value = 'filing'
+    return
+  }
+  activeTab.value = 'evidence'
+}
+
+const legalSectionMeta = computed(() => {
+  if (route.path.includes('petition')) {
+    return {
+      title: '诉状管理',
+      description: '通过左侧案件池选择案件后，集中处理模板、生成记录和覆盖上传。'
+    }
+  }
+  if (route.path.includes('filing')) {
+    return {
+      title: '立案跟踪',
+      description: '维护法院、立案编号、提交时间和驳回原因等立案信息。'
+    }
+  }
+  if (route.path.includes('my-cases')) {
+    return {
+      title: '我的案件',
+      description: '显示当前分配给你的法诉案件，并默认从证据材料开始处理。'
+    }
+  }
+  return {
+    title: '证据管理',
+    description: '通过案件池选择案件后，集中上传、预览、删除和打包下载证据材料。'
+  }
+})
 
 const enabledTemplates = computed(() => templateList.value.filter((item) => item.enabled))
 
@@ -775,9 +816,17 @@ const formatFileSize = (size?: number) => {
 }
 
 onMounted(async () => {
+  syncActiveTabByRoute()
   await Promise.all([getSummary(), getTemplates()])
   await getCasePage()
 })
+
+watch(
+  () => route.path,
+  () => {
+    syncActiveTabByRoute()
+  }
+)
 </script>
 
 <style lang="scss" scoped>
@@ -881,33 +930,21 @@ onMounted(async () => {
   font-weight: 700;
 }
 
+.section-head {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
 .panel-subtitle,
+.section-subtitle,
 .detail-subtitle,
 .template-tip {
   color: var(--el-text-color-secondary);
   font-size: 13px;
-}
-
-.panel-chip-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.panel-chip {
-  border: 1px solid var(--el-border-color);
-  border-radius: 999px;
-  background: #fff;
-  padding: 8px 14px;
-  color: var(--el-text-color-regular);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.panel-chip.is-active {
-  border-color: var(--el-color-primary-light-5);
-  background: var(--el-color-primary-light-9);
-  color: var(--el-color-primary);
 }
 
 .detail-meta {

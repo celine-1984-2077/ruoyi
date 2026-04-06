@@ -42,16 +42,16 @@ public class CourtCaseController {
     @Operation(summary = "获得案件")
     @Parameter(name = "id", description = "编号", required = true, example = "1")
     public CommonResult<CourtCaseRespVO> getCase(@RequestParam("id") Long id) {
-        CourtCaseDO courtCase = courtCaseService.getCase(id);
+        CourtCaseDO courtCase = courtCaseService.getCase(getLoginUserId(), id);
         return success(BeanUtils.toBean(courtCase, CourtCaseRespVO.class));
     }
 
     @DeleteMapping("/delete")
-    @PreAuthorize("@ss.hasPermission('court-case:case:create')")
+    @PreAuthorize("@ss.hasPermission('court-case:case:delete')")
     @Operation(summary = "删除案件")
     @Parameter(name = "id", description = "编号", required = true, example = "1")
     public CommonResult<Boolean> deleteCase(@RequestParam("id") Long id) {
-        courtCaseService.deleteCase(id);
+        courtCaseService.deleteCase(getLoginUserId(), id);
         return success(true);
     }
 
@@ -59,7 +59,7 @@ public class CourtCaseController {
     @PreAuthorize("@ss.hasPermission('court-case:case:query')")
     @Operation(summary = "获得案件分页")
     public CommonResult<PageResult<CourtCaseRespVO>> getCasePage(@Valid CourtCasePageReqVO pageReqVO) {
-        PageResult<CourtCaseDO> pageResult = courtCaseService.getCasePage(pageReqVO);
+        PageResult<CourtCaseDO> pageResult = courtCaseService.getCasePage(getLoginUserId(), pageReqVO);
         return success(BeanUtils.toBean(pageResult, CourtCaseRespVO.class));
     }
 
@@ -84,7 +84,7 @@ public class CourtCaseController {
     @Operation(summary = "获得案件流转日志")
     @Parameter(name = "caseId", description = "案件编号", required = true, example = "1")
     public CommonResult<List<CourtCaseFlowLogRespVO>> getCaseFlowLogList(@RequestParam("caseId") Long caseId) {
-        List<CourtCaseFlowLogDO> list = courtCaseService.getCaseFlowLogs(caseId);
+        List<CourtCaseFlowLogDO> list = courtCaseService.getCaseFlowLogs(getLoginUserId(), caseId);
         return success(BeanUtils.toBean(list, CourtCaseFlowLogRespVO.class));
     }
 }

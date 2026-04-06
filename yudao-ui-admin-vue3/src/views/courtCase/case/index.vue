@@ -113,7 +113,7 @@
           >
             推进
           </el-button>
-          <el-button v-hasPermi="['court-case:case:create']" link type="danger" @click="handleDelete(row)">
+          <el-button v-hasPermi="['court-case:case:delete']" link type="danger" @click="handleDelete(row)">
             删除
           </el-button>
         </template>
