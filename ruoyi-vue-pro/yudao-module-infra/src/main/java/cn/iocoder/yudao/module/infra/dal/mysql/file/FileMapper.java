@@ -23,4 +23,11 @@ public interface FileMapper extends BaseMapperX<FileDO> {
                 .orderByDesc(FileDO::getId));
     }
 
+    default FileDO selectByUrl(String url) {
+        return selectOne(new LambdaQueryWrapperX<FileDO>()
+                .eq(FileDO::getUrl, url)
+                .orderByDesc(FileDO::getId)
+                .last("LIMIT 1"));
+    }
+
 }

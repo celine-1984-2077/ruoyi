@@ -152,3 +152,82 @@ CREATE TABLE IF NOT EXISTS `court_case_transfer` (
   PRIMARY KEY (`id`),
   KEY `idx_case_transfer_case_id` (`case_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='案件法务移交记录表';
+
+CREATE TABLE IF NOT EXISTS `court_case_evidence` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `case_id` bigint NOT NULL COMMENT '案件编号',
+  `category` varchar(32) NOT NULL COMMENT '材料分类',
+  `file_id` bigint NOT NULL COMMENT '文件编号',
+  `file_name` varchar(255) NOT NULL COMMENT '文件名称',
+  `file_url` varchar(500) NOT NULL COMMENT '文件地址',
+  `file_type` varchar(100) DEFAULT NULL COMMENT '文件类型',
+  `file_size` bigint DEFAULT NULL COMMENT '文件大小',
+  `creator` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updater` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  PRIMARY KEY (`id`),
+  KEY `idx_case_evidence_case_id` (`case_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='案件证据材料表';
+
+CREATE TABLE IF NOT EXISTS `court_case_petition_template` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `name` varchar(64) NOT NULL COMMENT '模板名称',
+  `template_file_id` bigint DEFAULT NULL COMMENT '模板附件文件编号',
+  `template_file_name` varchar(255) DEFAULT NULL COMMENT '模板附件文件名',
+  `template_file_url` varchar(500) DEFAULT NULL COMMENT '模板附件文件地址',
+  `template_content` text NOT NULL COMMENT '模板内容',
+  `placeholder_desc` varchar(500) DEFAULT NULL COMMENT '占位符说明',
+  `enabled` bit(1) NOT NULL DEFAULT b'1' COMMENT '是否启用',
+  `creator` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updater` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  PRIMARY KEY (`id`),
+  KEY `idx_case_petition_template_enabled` (`enabled`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='案件诉状模板表';
+
+CREATE TABLE IF NOT EXISTS `court_case_petition_record` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `case_id` bigint NOT NULL COMMENT '案件编号',
+  `template_id` bigint DEFAULT NULL COMMENT '模板编号',
+  `template_name` varchar(64) NOT NULL COMMENT '模板名称快照',
+  `output_type` varchar(16) NOT NULL COMMENT '输出类型',
+  `version_no` int NOT NULL DEFAULT '1' COMMENT '版本号',
+  `file_id` bigint NOT NULL COMMENT '生成文件编号',
+  `file_name` varchar(255) NOT NULL COMMENT '生成文件名',
+  `file_url` varchar(500) NOT NULL COMMENT '生成文件地址',
+  `generated_content` mediumtext COMMENT '生成内容快照',
+  `overwritten` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否手工覆盖',
+  `creator` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updater` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  PRIMARY KEY (`id`),
+  KEY `idx_case_petition_record_case_id` (`case_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='案件诉状生成记录表';
+
+CREATE TABLE IF NOT EXISTS `court_case_filing` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `case_id` bigint NOT NULL COMMENT '案件编号',
+  `court_name` varchar(128) DEFAULT NULL COMMENT '立案法院',
+  `filing_no` varchar(128) DEFAULT NULL COMMENT '立案编号',
+  `submit_time` datetime DEFAULT NULL COMMENT '提交时间',
+  `status` varchar(16) NOT NULL DEFAULT 'PENDING' COMMENT '立案状态',
+  `reject_reason` varchar(500) DEFAULT NULL COMMENT '驳回原因',
+  `integration_snapshot` text COMMENT '预留接口字段',
+  `creator` varchar(64) DEFAULT '' COMMENT '创建者',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `updater` varchar(64) DEFAULT '' COMMENT '更新者',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除',
+  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_case_filing_case_id` (`case_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='案件立案信息表';
